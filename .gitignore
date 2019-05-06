@@ -1,0 +1,6 @@
+# Ignore backup files.
+*~
+# Ignore tools
+tools/
+# Ignore any a.out
+*a.out
