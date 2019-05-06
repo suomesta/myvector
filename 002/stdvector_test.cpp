@@ -1,14 +1,17 @@
 /**
- * @file    myvector_test.cpp
- * @brief   test of myvector using lest. 
+ * @file    stdvector_test.cpp
+ * @brief   do same test for std::vector with myvector. 
  * @author  toda
  * @date    2019-05-06
  * @version 0.1.0
  * @remark  the target is C++11 or more.
  */
 
+#include <vector>
 #include "../include/lest.hpp"
-#include "myvector.hpp"
+
+template <typename T>
+using myvector = std::vector<T>;
 
 const lest::test specification[] =
 {
@@ -36,10 +39,10 @@ const lest::test specification[] =
             EXPECT((std::is_same<const char&, vec::const_reference>::value));
             EXPECT((std::is_same<char*, vec::pointer>::value));
             EXPECT((std::is_same<const char*, vec::const_pointer>::value));
-            EXPECT((std::is_same<char*, vec::iterator>::value)); // not mandatory
-            EXPECT((std::is_same<const char*, vec::const_iterator>::value)); // not mandatory
-            EXPECT((std::is_same<std::reverse_iterator<char*>, vec::reverse_iterator>::value)); // not mandatory
-            EXPECT((std::is_same<std::reverse_iterator<const char*>, vec::const_reverse_iterator>::value)); // not mandatory
+//            EXPECT((std::is_same<char*, vec::iterator>::value)); // not mandatory
+//            EXPECT((std::is_same<const char*, vec::const_iterator>::value)); // not mandatory
+//            EXPECT((std::is_same<std::reverse_iterator<char*>, vec::reverse_iterator>::value)); // not mandatory
+//            EXPECT((std::is_same<std::reverse_iterator<const char*>, vec::const_reverse_iterator>::value)); // not mandatory
         }
         {
             using vec = myvector<int>;
@@ -51,10 +54,10 @@ const lest::test specification[] =
             EXPECT((std::is_same<const int&, vec::const_reference>::value));
             EXPECT((std::is_same<int*, vec::pointer>::value));
             EXPECT((std::is_same<const int*, vec::const_pointer>::value));
-            EXPECT((std::is_same<int*, vec::iterator>::value)); // not mandatory
-            EXPECT((std::is_same<const int*, vec::const_iterator>::value)); // not mandatory
-            EXPECT((std::is_same<std::reverse_iterator<int*>, vec::reverse_iterator>::value)); // not mandatory
-            EXPECT((std::is_same<std::reverse_iterator<const int*>, vec::const_reverse_iterator>::value)); // not mandatory
+//            EXPECT((std::is_same<int*, vec::iterator>::value)); // not mandatory
+//            EXPECT((std::is_same<const int*, vec::const_iterator>::value)); // not mandatory
+//            EXPECT((std::is_same<std::reverse_iterator<int*>, vec::reverse_iterator>::value)); // not mandatory
+//            EXPECT((std::is_same<std::reverse_iterator<const int*>, vec::const_reverse_iterator>::value)); // not mandatory
         }
         {
             using vec = myvector<double>;
@@ -66,18 +69,18 @@ const lest::test specification[] =
             EXPECT((std::is_same<const double&, vec::const_reference>::value));
             EXPECT((std::is_same<double*, vec::pointer>::value));
             EXPECT((std::is_same<const double*, vec::const_pointer>::value));
-            EXPECT((std::is_same<double*, vec::iterator>::value)); // not mandatory
-            EXPECT((std::is_same<const double*, vec::const_iterator>::value)); // not mandatory
-            EXPECT((std::is_same<std::reverse_iterator<double*>, vec::reverse_iterator>::value)); // not mandatory
-            EXPECT((std::is_same<std::reverse_iterator<const double*>, vec::const_reverse_iterator>::value)); // not mandatory
+//            EXPECT((std::is_same<double*, vec::iterator>::value)); // not mandatory
+//            EXPECT((std::is_same<const double*, vec::const_iterator>::value)); // not mandatory
+//            EXPECT((std::is_same<std::reverse_iterator<double*>, vec::reverse_iterator>::value)); // not mandatory
+//            EXPECT((std::is_same<std::reverse_iterator<const double*>, vec::const_reverse_iterator>::value)); // not mandatory
         }
 
         // check the result of sizeof(). Only minimum check is done
         {
             size_t minimum = sizeof(void*) + sizeof(size_t) + sizeof(size_t);
-            EXPECT(minimum <= sizeof(myvector<char>)); // not mandatory
-            EXPECT(minimum <= sizeof(myvector<int>)); // not mandatory
-            EXPECT(minimum <= sizeof(myvector<double>)); // not mandatory
+//            EXPECT(minimum <= sizeof(myvector<char>)); // not mandatory
+//            EXPECT(minimum <= sizeof(myvector<int>)); // not mandatory
+//            EXPECT(minimum <= sizeof(myvector<double>)); // not mandatory
         }
     },
 
