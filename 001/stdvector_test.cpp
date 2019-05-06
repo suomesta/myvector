@@ -10,8 +10,12 @@
 #include <vector>
 #include "../include/lest.hpp"
 
+namespace {
+
 template <typename T>
 using myvector = std::vector<T>;
+
+} // namespace {
 
 const lest::test specification[] =
 {

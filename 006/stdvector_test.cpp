@@ -88,6 +88,7 @@ const lest::test specification[] =
         // check the result of sizeof(). Only minimum check is done
         {
             size_t minimum = sizeof(void*) + sizeof(size_t) + sizeof(size_t);
+
 //            EXPECT(minimum <= sizeof(myvector<char>)); // not mandatory
 //            EXPECT(minimum <= sizeof(myvector<int>)); // not mandatory
 //            EXPECT(minimum <= sizeof(myvector<double>)); // not mandatory
@@ -106,14 +107,17 @@ const lest::test specification[] =
     {
         {
             myvector<char> v;
+
             EXPECT(0 == v.size());
         }
         {
             myvector<int> v;
+
             EXPECT(0 == v.size());
         }
         {
             myvector<double> v;
+
             EXPECT(0 == v.size());
         }
     },
@@ -122,14 +126,17 @@ const lest::test specification[] =
     {
         {
             myvector<char> v;
+
             EXPECT(0 == v.capacity());
         }
         {
             myvector<int> v;
+
             EXPECT(0 == v.capacity());
         }
         {
             myvector<double> v;
+
             EXPECT(0 == v.capacity());
         }
     },
