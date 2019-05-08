@@ -3,7 +3,7 @@
  * @brief   Implementation of myvector class. 
  *          myvector class imitates of std::vector. 
  * @author  toda
- * @date    2019-05-06
+ * @date    2019-05-08
  * @version 0.1.0
  * @remark  the target is C++11 or more.
  */
