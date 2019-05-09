@@ -38,7 +38,10 @@ public:
     /////////////////////////////////////////////////////////////////////////////
 
 private:
-    enum : size_type { MAX_SIZE = std::numeric_limits<size_type>::max() };
+    enum : size_type {
+        MAX_SIZE_BYTES = std::numeric_limits<size_type>::max(),
+        MAX_SIZE = MAX_SIZE_BYTES / sizeof(value_type),
+    };
     /////////////////////////////////////////////////////////////////////////////
 
 public:
@@ -141,7 +144,7 @@ public:
      */
     size_type max_size(void) const noexcept
     {
-        return MAX_SIZE / sizeof(value_type);
+        return MAX_SIZE;
     }
     /////////////////////////////////////////////////////////////////////////////
 
