@@ -37,6 +37,10 @@ public:
     using const_reverse_iterator = std::reverse_iterator<const_iterator>;
     /////////////////////////////////////////////////////////////////////////////
 
+private:
+    enum : size_type { MAX_SIZE = std::numeric_limits<size_type>::max() };
+    /////////////////////////////////////////////////////////////////////////////
+
 public:
     /**
      * @brief      Default constructor. Constructs an empty container.
@@ -137,7 +141,7 @@ public:
      */
     size_type max_size(void) const noexcept
     {
-        return std::numeric_limits<difference_type>::max() / sizeof(value_type);
+        return MAX_SIZE / sizeof(value_type);
     }
     /////////////////////////////////////////////////////////////////////////////
 

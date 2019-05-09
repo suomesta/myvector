@@ -235,21 +235,21 @@ const lest::test specification[] =
             myvector<char> v;
 
             using vec = myvector<char>;
-            vec::size_type expected = std::numeric_limits<vec::difference_type>::max() / sizeof(vec::value_type);
+            vec::size_type expected = std::numeric_limits<vec::size_type>::max() / sizeof(vec::value_type);
 //            EXPECT(expected == v.max_size()); // not mandatory
         }
         {
             myvector<int> v;
 
             using vec = myvector<int>;
-            vec::size_type expected = std::numeric_limits<vec::difference_type>::max() / sizeof(vec::value_type);
+            vec::size_type expected = std::numeric_limits<vec::size_type>::max() / sizeof(vec::value_type);
 //            EXPECT(expected == v.max_size()); // not mandatory
         }
         {
             myvector<double> v;
 
             using vec = myvector<double>;
-            vec::size_type expected = std::numeric_limits<vec::difference_type>::max() / sizeof(vec::value_type);
+            vec::size_type expected = std::numeric_limits<vec::size_type>::max() / sizeof(vec::value_type);
 //            EXPECT(expected == v.max_size()); // not mandatory
         }
     },
