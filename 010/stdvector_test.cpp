@@ -283,14 +283,12 @@ const lest::test specification[] =
             EXPECT(char() == *std::next(v.begin(), 1));
             EXPECT(char() == *std::next(v.begin(), 2));
             EXPECT(3 == std::distance(v.begin(), v.end()));
-            EXPECT(3 == std::distance(v.cbegin(), v.cend()));
             EXPECT(3 == v.size());
             EXPECT(3 == v.capacity());
 
 //            v.~vector(); // not mandatory
 
 //            EXPECT(v.begin() == v.end()); // not mandatory
-//            EXPECT(v.cbegin() == v.cend()); // not mandatory
 //            EXPECT(0 == v.size()); // not mandatory
 //            EXPECT(0 == v.capacity()); // not mandatory
         }
@@ -301,14 +299,12 @@ const lest::test specification[] =
             EXPECT(int() == *std::next(v.begin(), 1));
             EXPECT(int() == *std::next(v.begin(), 2));
             EXPECT(3 == std::distance(v.begin(), v.end()));
-            EXPECT(3 == std::distance(v.cbegin(), v.cend()));
             EXPECT(3 == v.size());
             EXPECT(3 == v.capacity());
 
 //            v.~vector(); // not mandatory
 
 //            EXPECT(v.begin() == v.end()); // not mandatory
-//            EXPECT(v.cbegin() == v.cend()); // not mandatory
 //            EXPECT(0 == v.size()); // not mandatory
 //            EXPECT(0 == v.capacity()); // not mandatory
         }
@@ -319,14 +315,12 @@ const lest::test specification[] =
             EXPECT(double() == *std::next(v.begin(), 1));
             EXPECT(double() == *std::next(v.begin(), 2));
             EXPECT(3 == std::distance(v.begin(), v.end()));
-            EXPECT(3 == std::distance(v.cbegin(), v.cend()));
             EXPECT(3 == v.size());
             EXPECT(3 == v.capacity());
 
 //            v.~vector(); // not mandatory
 
 //            EXPECT(v.begin() == v.end()); // not mandatory
-//            EXPECT(v.cbegin() == v.cend()); // not mandatory
 //            EXPECT(0 == v.size()); // not mandatory
 //            EXPECT(0 == v.capacity()); // not mandatory
         }
@@ -334,7 +328,6 @@ const lest::test specification[] =
             myvector<char> v(0);
 
             EXPECT(v.begin() == v.end());
-            EXPECT(v.cbegin() == v.cend());
             EXPECT(0 == v.size());
             EXPECT(0 == v.capacity());
         }
@@ -342,7 +335,6 @@ const lest::test specification[] =
             myvector<int> v(0);
 
             EXPECT(v.begin() == v.end());
-            EXPECT(v.cbegin() == v.cend());
             EXPECT(0 == v.size());
             EXPECT(0 == v.capacity());
         }
@@ -350,7 +342,6 @@ const lest::test specification[] =
             myvector<double> v(0);
 
             EXPECT(v.begin() == v.end());
-            EXPECT(v.cbegin() == v.cend());
             EXPECT(0 == v.size());
             EXPECT(0 == v.capacity());
         }
@@ -366,14 +357,12 @@ const lest::test specification[] =
             myvector<Noncopyable> v(1);
 
             EXPECT(1 == std::distance(v.begin(), v.end()));
-            EXPECT(1 == std::distance(v.cbegin(), v.cend()));
             EXPECT(1 == v.size());
             EXPECT(1 == v.capacity());
 
 //            v.~vector(); // not mandatory
 
 //            EXPECT(v.begin() == v.end()); // not mandatory
-//            EXPECT(v.cbegin() == v.cend()); // not mandatory
 //            EXPECT(0 == v.size()); // not mandatory
 //            EXPECT(0 == v.capacity()); // not mandatory
         }
@@ -381,14 +370,12 @@ const lest::test specification[] =
             myvector<Unmovable> v(1);
 
             EXPECT(1 == std::distance(v.begin(), v.end()));
-            EXPECT(1 == std::distance(v.cbegin(), v.cend()));
             EXPECT(1 == v.size());
             EXPECT(1 == v.capacity());
 
 //            v.~vector(); // not mandatory
 
 //            EXPECT(v.begin() == v.end()); // not mandatory
-//            EXPECT(v.cbegin() == v.cend()); // not mandatory
 //            EXPECT(0 == v.size()); // not mandatory
 //            EXPECT(0 == v.capacity()); // not mandatory
         }
@@ -403,7 +390,6 @@ const lest::test specification[] =
             EXPECT('A' == *std::next(v.begin(), 1));
             EXPECT('A' == *std::next(v.begin(), 2));
             EXPECT(3 == std::distance(v.begin(), v.end()));
-            EXPECT(3 == std::distance(v.cbegin(), v.cend()));
             EXPECT(3 == v.size());
             EXPECT(3 == v.capacity());
         }
@@ -414,7 +400,6 @@ const lest::test specification[] =
             EXPECT(10 == *std::next(v.begin(), 1));
             EXPECT(10 == *std::next(v.begin(), 2));
             EXPECT(3 == std::distance(v.begin(), v.end()));
-            EXPECT(3 == std::distance(v.cbegin(), v.cend()));
             EXPECT(3 == v.size());
             EXPECT(3 == v.capacity());
         }
@@ -425,7 +410,6 @@ const lest::test specification[] =
             EXPECT(1.5 == *std::next(v.begin(), 1));
             EXPECT(1.5 == *std::next(v.begin(), 2));
             EXPECT(3 == std::distance(v.begin(), v.end()));
-            EXPECT(3 == std::distance(v.cbegin(), v.cend()));
             EXPECT(3 == v.size());
             EXPECT(3 == v.capacity());
         }
@@ -433,7 +417,6 @@ const lest::test specification[] =
             myvector<char> v(0, 'A');
 
             EXPECT(v.begin() == v.end());
-            EXPECT(v.cbegin() == v.cend());
             EXPECT(0 == v.size());
             EXPECT(0 == v.capacity());
         }
@@ -441,7 +424,6 @@ const lest::test specification[] =
             myvector<int> v(0, 10);
 
             EXPECT(v.begin() == v.end());
-            EXPECT(v.cbegin() == v.cend());
             EXPECT(0 == v.size());
             EXPECT(0 == v.capacity());
         }
@@ -449,7 +431,6 @@ const lest::test specification[] =
             myvector<double> v(0, 1.5);
 
             EXPECT(v.begin() == v.end());
-            EXPECT(v.cbegin() == v.cend());
             EXPECT(0 == v.size());
             EXPECT(0 == v.capacity());
         }
@@ -465,7 +446,6 @@ const lest::test specification[] =
             myvector<Unmovable> v(1, Unmovable());
 
             EXPECT(1 == std::distance(v.begin(), v.end()));
-            EXPECT(1 == std::distance(v.cbegin(), v.cend()));
             EXPECT(1 == v.size());
             EXPECT(1 == v.capacity());
         }
@@ -481,7 +461,6 @@ const lest::test specification[] =
             EXPECT('A' == *std::next(v.begin(), 1));
             EXPECT('A' == *std::next(v.begin(), 2));
             EXPECT(3 == std::distance(v.begin(), v.end()));
-            EXPECT(3 == std::distance(v.cbegin(), v.cend()));
             EXPECT(3 == v.size());
             EXPECT(3 == v.capacity());
         }
@@ -493,7 +472,6 @@ const lest::test specification[] =
             EXPECT(10 == *std::next(v.begin(), 1));
             EXPECT(10 == *std::next(v.begin(), 2));
             EXPECT(3 == std::distance(v.begin(), v.end()));
-            EXPECT(3 == std::distance(v.cbegin(), v.cend()));
             EXPECT(3 == v.size());
             EXPECT(3 == v.capacity());
         }
@@ -505,7 +483,6 @@ const lest::test specification[] =
             EXPECT(1.5 == *std::next(v.begin(), 1));
             EXPECT(1.5 == *std::next(v.begin(), 2));
             EXPECT(3 == std::distance(v.begin(), v.end()));
-            EXPECT(3 == std::distance(v.cbegin(), v.cend()));
             EXPECT(3 == v.size());
             EXPECT(3 == v.capacity());
         }
@@ -514,7 +491,6 @@ const lest::test specification[] =
             myvector<char> v(src);
 
             EXPECT(v.begin() == v.end());
-            EXPECT(v.cbegin() == v.cend());
             EXPECT(0 == v.size());
             EXPECT(0 == v.capacity());
         }
@@ -523,7 +499,6 @@ const lest::test specification[] =
             myvector<int> v(src);
 
             EXPECT(v.begin() == v.end());
-            EXPECT(v.cbegin() == v.cend());
             EXPECT(0 == v.size());
             EXPECT(0 == v.capacity());
         }
@@ -532,7 +507,6 @@ const lest::test specification[] =
             myvector<double> v(src);
 
             EXPECT(v.begin() == v.end());
-            EXPECT(v.cbegin() == v.cend());
             EXPECT(0 == v.size());
             EXPECT(0 == v.capacity());
         }
@@ -541,7 +515,6 @@ const lest::test specification[] =
             myvector<Unmovable> v(src);
 
             EXPECT(1 == std::distance(v.begin(), v.end()));
-            EXPECT(1 == std::distance(v.cbegin(), v.cend()));
             EXPECT(1 == v.size());
             EXPECT(1 == v.capacity());
         }
