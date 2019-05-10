@@ -215,7 +215,7 @@ public:
 
 private:
     /**
-     * @brief      Check new container size.
+     * @brief      Checks new container size.
      * @param[in]  count: Number of elements.
      * @return     Same as count.
      * @throw      std::length_error: If count is greater than the maximum size.

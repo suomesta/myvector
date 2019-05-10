@@ -58,7 +58,7 @@ public:
      *             default-inserted instances of T.
      * @param[in]  count: The size of the container.
      * @throw      std::length_error: If count is greater than max_size().
-     *             std::bad_alloc: If malloc() fails to allocate storage.
+     * @throw      std::bad_alloc: If malloc() fails to allocate storage.
      */
     explicit myvector(size_type count) :
         heap_(count ? mymalloc(length_check(count)) : nullptr),
@@ -196,7 +196,7 @@ public:
 
 private:
     /**
-     * @brief      Check new container size.
+     * @brief      Checks new container size.
      * @param[in]  count: Number of elements.
      * @return     Same as count.
      * @throw      std::length_error: If count is greater than the maximum size.
