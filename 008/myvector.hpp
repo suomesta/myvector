@@ -57,6 +57,8 @@ public:
      * @brief      Constructor with size. Constructs the container with count
      *             default-inserted instances of T.
      * @param[in]  count: The size of the container.
+     * @throw      std::length_error: If count is greater than max_size().
+     *             std::bad_alloc: If malloc() fails to allocate storage.
      */
     explicit myvector(size_type count) :
         heap_(count ? mymalloc(length_check(count)) : nullptr),

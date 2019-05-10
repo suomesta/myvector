@@ -58,6 +58,8 @@ public:
      *             with count copies of elements with value.
      * @param[in]  count: The size of the container.
      * @param[in]  value: The value to initialize elements of the container with.
+     * @throw      std::length_error: If count is greater than max_size().
+     * @throw      std::bad_alloc: If malloc() fails to allocate storage.
      */
     myvector(size_type count, const value_type& value) :
         heap_(count ? mymalloc(length_check(count)) : nullptr),
@@ -74,6 +76,8 @@ public:
      * @brief      Constructor with size. Constructs the container with count
      *             default-inserted instances of T.
      * @param[in]  count: The size of the container.
+     * @throw      std::length_error: If count is greater than max_size().
+     * @throw      std::bad_alloc: If malloc() fails to allocate storage.
      */
     explicit myvector(size_type count) :
         heap_(count ? mymalloc(length_check(count)) : nullptr),
