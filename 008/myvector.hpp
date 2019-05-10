@@ -201,7 +201,7 @@ private:
      */
     size_type length_check(size_type count) const
     {
-        if (count > max_size()) {
+        if (count > MAX_SIZE) {
             throw std::length_error("myvecotr::length_check()");
         }
 
