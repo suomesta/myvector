@@ -103,6 +103,7 @@ public:
     myvector(InputIt first,
              typename std::enable_if<not std::is_integral<InputIt>::value, InputIt>::type last)
     {
+        // Switcher for mydistance(). Whether InputIt is random access iterator or input iterator.
         using iterator_type = typename std::iterator_traits<InputIt>::iterator_category;
 
         size_type count = mydistance(first, last, iterator_type());
@@ -297,12 +298,12 @@ private:
      *             The return type is size_type (not difference_type).
      * @param[in]  first: First of the range.
      * @param[in]  last: Last of the range.
-     * @param[in]  std::random_access_iterator_tag: switcher according to iterator type.
+     * @param[in]  std::random_access_iterator_tag: Function switcher according to iterator type.
      * @return     Distance from first to last in size_type.
-     * @tparam     InputIt: Iterator of the range.
+     * @tparam     RandomIt: Random access iterator of the range.
      */
-    template <class InputIt>
-    size_type mydistance(InputIt first, InputIt last, std::random_access_iterator_tag) const
+    template <class RandomIt>
+    size_type mydistance(RandomIt first, RandomIt last, std::random_access_iterator_tag) const
     {
         if ((first <= last) && (last - first >= 0)) { // confirm never overflows
             return last - first;
@@ -318,9 +319,9 @@ private:
      *             The return type is size_type (not difference_type).
      * @param[in]  first: First of the range.
      * @param[in]  last: Last of the range.
-     * @param[in]  std::input_iterator_tag: switcher according to iterator type.
+     * @param[in]  std::input_iterator_tag: Function switcher according to iterator type.
      * @return     Distance from first to last in size_type.
-     * @tparam     InputIt: Iterator of the range.
+     * @tparam     InputIt: Input iterator of the range.
      */
     template <class InputIt>
     size_type mydistance(InputIt first, InputIt last, std::input_iterator_tag) const
