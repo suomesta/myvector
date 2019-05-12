@@ -442,6 +442,14 @@ const lest::test specification[] =
             EXPECT_THROWS_AS((myvector<double>(size, 1.5)), std::length_error);
         }
         {
+// Noncopyable cannot be applied to initial_value
+//            myvector<Noncopyable> v(1, Noncopyable());
+//
+//            EXPECT(1 == std::distance(v.begin(), v.end()));
+//            EXPECT(1 == v.size());
+//            EXPECT(1 == v.capacity());
+        }
+        {
             myvector<Unmovable> v(1, Unmovable());
 
             EXPECT(1 == std::distance(v.begin(), v.end()));
@@ -508,6 +516,15 @@ const lest::test specification[] =
             EXPECT(v.begin() == v.end());
             EXPECT(0 == v.size());
             EXPECT(0 == v.capacity());
+        }
+        {
+// Noncopyable cannot be applied to copy constructor
+//            myvector<Noncopyable> src(1, Noncopyable());
+//            myvector<Noncopyable> v(src);
+//
+//            EXPECT(1 == std::distance(v.begin(), v.end()));
+//            EXPECT(1 == v.size());
+//            EXPECT(1 == v.capacity());
         }
         {
             myvector<Unmovable> src(1, Unmovable());
@@ -657,7 +674,7 @@ const lest::test specification[] =
         }
         {
             std::list<char> src = {'A', 'B', 'C'};
-            myvector<char> v(std::begin(src), std::end(src));
+            myvector<char> v(src.begin(), src.end());
 
             EXPECT('A' == *std::next(v.begin(), 0));
             EXPECT('B' == *std::next(v.begin(), 1));
@@ -668,7 +685,7 @@ const lest::test specification[] =
         }
         {
             std::list<int> src = {1, 2, 3};
-            myvector<int> v(std::begin(src), std::end(src));
+            myvector<int> v(src.begin(), src.end());
 
             EXPECT(1 == *std::next(v.begin(), 0));
             EXPECT(2 == *std::next(v.begin(), 1));
@@ -679,7 +696,7 @@ const lest::test specification[] =
         }
         {
             std::list<double> src = {0.5, 1.0, 1.5};
-            myvector<double> v(std::begin(src), std::end(src));
+            myvector<double> v(src.begin(), src.end());
 
             EXPECT(0.5 == *std::next(v.begin(), 0));
             EXPECT(1.0 == *std::next(v.begin(), 1));
@@ -690,7 +707,7 @@ const lest::test specification[] =
         }
         {
             std::list<char> src;
-            myvector<char> v(std::begin(src), std::end(src));
+            myvector<char> v(src.begin(), src.end());
 
             EXPECT(0 == std::distance(v.begin(), v.end()));
             EXPECT(0 == v.size());
@@ -698,7 +715,7 @@ const lest::test specification[] =
         }
         {
             std::list<int> src;
-            myvector<int> v(std::begin(src), std::end(src));
+            myvector<int> v(src.begin(), src.end());
 
             EXPECT(0 == std::distance(v.begin(), v.end()));
             EXPECT(0 == v.size());
@@ -706,11 +723,28 @@ const lest::test specification[] =
         }
         {
             std::list<double> src;
-            myvector<double> v(std::begin(src), std::end(src));
+            myvector<double> v(src.begin(), src.end());
 
             EXPECT(0 == std::distance(v.begin(), v.end()));
             EXPECT(0 == v.size());
             EXPECT(0 == v.capacity());
+        }
+        {
+// Noncopyable cannot make input iterator
+//            Noncopyable src[1];
+//            myvector<Noncopyable> v(std::begin(src), std::end(src));
+//
+//            EXPECT(1 == std::distance(v.begin(), v.end()));
+//            EXPECT(1 == v.size());
+//            EXPECT(1 == v.capacity());
+        }
+        {
+            Unmovable src[1];
+            myvector<Unmovable> v(std::begin(src), std::end(src));
+
+            EXPECT(1 == std::distance(v.begin(), v.end()));
+            EXPECT(1 == v.size());
+            EXPECT(1 == v.capacity());
         }
         {
             myvector<size_t> v(2, 3); // constructor with size & initial value should be called

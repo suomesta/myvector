@@ -440,6 +440,14 @@ const lest::test specification[] =
             EXPECT_THROWS_AS((myvector<double>(size, 1.5)), std::length_error);
         }
         {
+// Noncopyable cannot be applied to initial_value
+//            myvector<Noncopyable> v(1, Noncopyable());
+//
+//            EXPECT(1 == std::distance(v.begin(), v.end()));
+//            EXPECT(1 == v.size());
+//            EXPECT(1 == v.capacity());
+        }
+        {
             myvector<Unmovable> v(1, Unmovable());
 
             EXPECT(1 == std::distance(v.begin(), v.end()));
@@ -506,6 +514,15 @@ const lest::test specification[] =
             EXPECT(v.begin() == v.end());
             EXPECT(0 == v.size());
             EXPECT(0 == v.capacity());
+        }
+        {
+// Noncopyable cannot be applied to copy constructor
+//            myvector<Noncopyable> src(1, Noncopyable());
+//            myvector<Noncopyable> v(src);
+//
+//            EXPECT(1 == std::distance(v.begin(), v.end()));
+//            EXPECT(1 == v.size());
+//            EXPECT(1 == v.capacity());
         }
         {
             myvector<Unmovable> src(1, Unmovable());
