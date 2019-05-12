@@ -16,24 +16,24 @@ namespace {
 template <typename T>
 using myvector = std::vector<T>;
 
-struct Noncopyable
+struct noncopyable
 {
-    Noncopyable(void) = default;
-    Noncopyable(const Noncopyable&) = delete;
-    Noncopyable(Noncopyable&&) = default;
-    Noncopyable& operator=(const Noncopyable&) = delete;
-    Noncopyable& operator=(Noncopyable&&) = default;
-    ~Noncopyable(void) = default;
+    noncopyable(void) = default;
+    noncopyable(const noncopyable&) = delete;
+    noncopyable(noncopyable&&) = default;
+    noncopyable& operator=(const noncopyable&) = delete;
+    noncopyable& operator=(noncopyable&&) = default;
+    ~noncopyable(void) = default;
 };
 
-struct Unmovable
+struct unmovable
 {
-    Unmovable(void) = default;
-    Unmovable(const Unmovable&) = default;
-    Unmovable(Unmovable&&) = delete;
-    Unmovable& operator=(const Unmovable&) = default;
-    Unmovable& operator=(Unmovable&&) = delete;
-    ~Unmovable(void) = default;
+    unmovable(void) = default;
+    unmovable(const unmovable&) = default;
+    unmovable(unmovable&&) = delete;
+    unmovable& operator=(const unmovable&) = default;
+    unmovable& operator=(unmovable&&) = delete;
+    ~unmovable(void) = default;
 };
 
 template <typename T>
@@ -354,7 +354,7 @@ const lest::test specification[] =
             EXPECT_THROWS_AS((myvector<double>(size)), std::length_error);
         }
         {
-            myvector<Noncopyable> v(1);
+            myvector<noncopyable> v(1);
 
             EXPECT(1 == std::distance(v.begin(), v.end()));
             EXPECT(1 == v.size());
@@ -367,7 +367,7 @@ const lest::test specification[] =
 //            EXPECT(0 == v.capacity()); // not mandatory
         }
         {
-            myvector<Unmovable> v(1);
+            myvector<unmovable> v(1);
 
             EXPECT(1 == std::distance(v.begin(), v.end()));
             EXPECT(1 == v.size());
@@ -443,15 +443,15 @@ const lest::test specification[] =
             EXPECT_THROWS_AS((myvector<double>(size, 1.5)), std::length_error);
         }
         {
-// Noncopyable cannot be applied to initial_value
-//            myvector<Noncopyable> v(1, Noncopyable());
+// noncopyable cannot be applied to initial_value
+//            myvector<noncopyable> v(1, noncopyable());
 //
 //            EXPECT(1 == std::distance(v.begin(), v.end()));
 //            EXPECT(1 == v.size());
 //            EXPECT(1 == v.capacity());
         }
         {
-            myvector<Unmovable> v(1, Unmovable());
+            myvector<unmovable> v(1, unmovable());
 
             EXPECT(1 == std::distance(v.begin(), v.end()));
             EXPECT(1 == v.size());
@@ -519,17 +519,17 @@ const lest::test specification[] =
             EXPECT(0 == v.capacity());
         }
         {
-// Noncopyable cannot be applied to copy constructor
-//            myvector<Noncopyable> src(1, Noncopyable());
-//            myvector<Noncopyable> v(src);
+// noncopyable cannot be applied to copy constructor
+//            myvector<noncopyable> src(1, noncopyable());
+//            myvector<noncopyable> v(src);
 //
 //            EXPECT(1 == std::distance(v.begin(), v.end()));
 //            EXPECT(1 == v.size());
 //            EXPECT(1 == v.capacity());
         }
         {
-            myvector<Unmovable> src(1, Unmovable());
-            myvector<Unmovable> v(src);
+            myvector<unmovable> src(1, unmovable());
+            myvector<unmovable> v(src);
 
             EXPECT(1 == std::distance(v.begin(), v.end()));
             EXPECT(1 == v.size());
