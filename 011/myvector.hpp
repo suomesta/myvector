@@ -107,7 +107,7 @@ public:
         for (auto i = other.cbegin(); i != other.cend(); ++i) {
             new(p++) value_type(*i);
         }
-    } 
+    }
     /////////////////////////////////////////////////////////////////////////////
 
     /**
@@ -122,7 +122,7 @@ public:
         std::swap(heap_, other.heap_);
         std::swap(size_, other.size_);
         std::swap(capacity_, other.capacity_);
-    } 
+    }
     /////////////////////////////////////////////////////////////////////////////
 
     /**

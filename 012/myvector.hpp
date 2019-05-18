@@ -97,6 +97,8 @@ public:
      * @brief      Constructs the container with the contents of the range [first, last).
      * @param[in]  first: First of the range to copy the elements from.
      * @param[in]  last: Last of the range to copy the elements from.
+     * @throw      std::length_error: If distance between first and last is greater than max_size().
+     * @throw      std::bad_alloc: If malloc() fails to allocate storage.
      * @tparam     InputIt: Iterator to the elements.
      */
     template <class InputIt>
@@ -108,7 +110,7 @@ public:
 
         size_type count = mydistance(first, last, iterator_type());
         if (count) {
-            heap_ = mymalloc(count);
+            heap_ = mymalloc(length_check(count));
             size_ = count;
             capacity_ = count;
 
@@ -117,7 +119,7 @@ public:
                 new(p++) value_type(*i);
             }
         }
-    } 
+    }
     /////////////////////////////////////////////////////////////////////////////
 
     /**
@@ -135,7 +137,7 @@ public:
         for (auto i = other.cbegin(); i != other.cend(); ++i) {
             new(p++) value_type(*i);
         }
-    } 
+    }
     /////////////////////////////////////////////////////////////////////////////
 
     /**
@@ -150,7 +152,7 @@ public:
         std::swap(heap_, other.heap_);
         std::swap(size_, other.size_);
         std::swap(capacity_, other.capacity_);
-    } 
+    }
     /////////////////////////////////////////////////////////////////////////////
 
     /**
