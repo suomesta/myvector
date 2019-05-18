@@ -96,6 +96,7 @@ public:
      *             contents of other.
      * @param[in,out] other: Another container to be used as source to initialize the
      *                       elements of the container with.
+     * @throw      std::bad_alloc: If malloc() fails to allocate storage.
      */
     myvector(const self_type& other) :
         heap_(other.size() ? mymalloc(other.size()) : nullptr),
