@@ -45,6 +45,7 @@ private:
         MAX_SIZE_BYTES = std::numeric_limits<size_type>::max(),
         MAX_SIZE = MAX_SIZE_BYTES / sizeof(value_type),
     };
+
     using self_type = myvector<value_type>;
     /////////////////////////////////////////////////////////////////////////////
 
