@@ -14,6 +14,7 @@
 
 namespace {
 
+// non-trivial and non-copyable struct
 struct noncopyable
 {
     noncopyable(void) = default;
@@ -21,9 +22,10 @@ struct noncopyable
     noncopyable(noncopyable&&) = default;
     noncopyable& operator=(const noncopyable&) = delete;
     noncopyable& operator=(noncopyable&&) = default;
-    ~noncopyable(void) = default;
+    virtual ~noncopyable(void) = default;
 };
 
+// non-trivial and unmovable struct
 struct unmovable
 {
     unmovable(void) = default;
@@ -31,7 +33,7 @@ struct unmovable
     unmovable(unmovable&&) = delete;
     unmovable& operator=(const unmovable&) = default;
     unmovable& operator=(unmovable&&) = delete;
-    ~unmovable(void) = default;
+    virtual ~unmovable(void) = default;
 };
 
 template <typename T>

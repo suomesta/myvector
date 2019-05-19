@@ -13,24 +13,26 @@
 
 namespace {
 
-struct Noncopyable
+// non-trivial and non-copyable struct
+struct noncopyable
 {
-    Noncopyable(void) = default;
-    Noncopyable(const Noncopyable&) = delete;
-    Noncopyable(Noncopyable&&) = default;
-    Noncopyable& operator=(const Noncopyable&) = delete;
-    Noncopyable& operator=(Noncopyable&&) = default;
-    ~Noncopyable(void) = default;
+    noncopyable(void) = default;
+    noncopyable(const noncopyable&) = delete;
+    noncopyable(noncopyable&&) = default;
+    noncopyable& operator=(const noncopyable&) = delete;
+    noncopyable& operator=(noncopyable&&) = default;
+    virtual ~noncopyable(void) = default;
 };
 
-struct Unmovable
+// non-trivial and unmovable struct
+struct unmovable
 {
-    Unmovable(void) = default;
-    Unmovable(const Unmovable&) = default;
-    Unmovable(Unmovable&&) = delete;
-    Unmovable& operator=(const Unmovable&) = default;
-    Unmovable& operator=(Unmovable&&) = delete;
-    ~Unmovable(void) = default;
+    unmovable(void) = default;
+    unmovable(const unmovable&) = default;
+    unmovable(unmovable&&) = delete;
+    unmovable& operator=(const unmovable&) = default;
+    unmovable& operator=(unmovable&&) = delete;
+    virtual ~unmovable(void) = default;
 };
 
 template <typename T>
@@ -351,7 +353,7 @@ const lest::test specification[] =
             EXPECT_THROWS_AS((myvector<double>(size)), std::length_error);
         }
         {
-            myvector<Noncopyable> v(1);
+            myvector<noncopyable> v(1);
 
             EXPECT(1 == std::distance(v.begin(), v.end()));
             EXPECT(1 == v.size());
@@ -364,7 +366,7 @@ const lest::test specification[] =
             EXPECT(0 == v.capacity()); // not mandatory
         }
         {
-            myvector<Unmovable> v(1);
+            myvector<unmovable> v(1);
 
             EXPECT(1 == std::distance(v.begin(), v.end()));
             EXPECT(1 == v.size());
