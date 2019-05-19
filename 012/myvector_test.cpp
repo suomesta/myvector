@@ -6,7 +6,6 @@
  * @version 0.1.0
  * @remark  the target is C++11 or more.
  */
-#include <iostream>
 
 #include <list>
 #include <type_traits>
