@@ -309,11 +309,13 @@ public:
      *             past-the-end iterator, and all references to the elements are
      *             invalidated. Otherwise, no iterators or references are invalidated.
      * @param[in]  new_cap: New capacity of the vector.
+     * @throw      std::length_error: If new_cap is greater than max_size().
+     * @throw      std::bad_alloc: If malloc() (or realloc()) fails to allocate storage.
      */
     void reserve(size_type new_cap)
     {
         if (new_cap > capacity_) { // expand capacity
-            myrealloc(length_check(new_cap), realloc_switcher());
+            reallocation(length_check(new_cap), realloc_switcher());
         }
     }
     /////////////////////////////////////////////////////////////////////////////
@@ -412,9 +414,9 @@ private:
      * @param[in]  trivially_copyable_tag: Function switcher according to value_type characteristic.
      * @throw      std::bad_alloc: If realloc() fails to allocate storage.
      */
-    void myrealloc(size_type new_cap, trivially_copyable_tag)
+    void reallocation(size_type new_cap, trivially_copyable_tag)
     {
-        // new allocation
+        // reallocation by calling realloc()
         void* p = realloc(static_cast<void*>(heap_), sizeof(value_type) * new_cap);
         if (p == nullptr) {
             throw std::bad_alloc();
@@ -435,7 +437,7 @@ private:
      * @param[in]  move_constructible_tag: Function switcher according to value_type characteristic.
      * @throw      std::bad_alloc: If malloc() fails to allocate storage.
      */
-    void myrealloc(size_type new_cap, move_constructible_tag)
+    void reallocation(size_type new_cap, move_constructible_tag)
     {
         // new allocation
         pointer p = mymalloc(new_cap); // may throw std::bad_alloc
@@ -460,7 +462,7 @@ private:
      * @param[in]  copy_constructible_tag: Function switcher according to value_type characteristic.
      * @throw      std::bad_alloc: If malloc() fails to allocate storage.
      */
-    void myrealloc(size_type new_cap, copy_constructible_tag)
+    void reallocation(size_type new_cap, copy_constructible_tag)
     {
         // new allocation
         pointer p = mymalloc(new_cap); // may throw std::bad_alloc

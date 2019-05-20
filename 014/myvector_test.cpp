@@ -974,6 +974,16 @@ const lest::test specification[] =
             EXPECT(50 == v.capacity());
         }
         {
+            myvector<int> v;
+            auto size = std::numeric_limits<myvector<int>::size_type>::max();
+            EXPECT_THROWS_AS((v.reserve(size)), std::length_error);
+        }
+        {
+            myvector<double> v;
+            auto size = std::numeric_limits<myvector<double>::size_type>::max();
+            EXPECT_THROWS_AS((v.reserve(size)), std::length_error);
+        }
+        {
             myvector<noncopyable> v(1);
             v.reserve(1000);
 
