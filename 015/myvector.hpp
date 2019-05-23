@@ -471,7 +471,7 @@ private:
     /**
      * @brief      Does reallocation by calling reaclloc().
      *             value_type shall be TriviallyCopyable.
-     * @param[in]  new_cap: New capacity of the vector. Should be new_cap > 0.
+     * @param[in]  new_cap: New capacity of the vector. Should be new_cap >= size_.
      * @param[in]  trivially_copyable_tag: Function switcher according to value_type characteristic.
      * @throw      std::bad_alloc: If realloc() fails to allocate storage.
      */
@@ -494,7 +494,7 @@ private:
     /**
      * @brief      Does reallocation by calling malloc().
      *             value_type shall be MoveConstructible.
-     * @param[in]  new_cap: New capacity of the vector. Should be new_cap > 0.
+     * @param[in]  new_cap: New capacity of the vector. Should be new_cap >= size_.
      * @param[in]  move_constructible_tag: Function switcher according to value_type characteristic.
      * @throw      std::bad_alloc: If malloc() fails to allocate storage.
      */
@@ -519,7 +519,7 @@ private:
     /**
      * @brief      Does reallocation by calling malloc().
      *             value_type shall be CopyConstructible.
-     * @param[in]  new_cap: New capacity of the vector. Should be new_cap > 0.
+     * @param[in]  new_cap: New capacity of the vector. Should be new_cap >= size_.
      * @param[in]  copy_constructible_tag: Function switcher according to value_type characteristic.
      * @throw      std::bad_alloc: If malloc() fails to allocate storage.
      */
