@@ -208,14 +208,16 @@ public:
      *             contents of other.
      * @param[in]  other: Another container to use as data source.
      * @return     Own reference.
+     * @throw      std::bad_alloc: If malloc() (or realloc()) fails to allocate storage.
      */
     self_type& operator=(const self_type& other)
     {
         if (this != &other) {
-            // clear elements
+            // clear
             for (size_type i = 0; i < size_; i++) {
                 heap_[i].~value_type();
             }
+            size_ = 0;
 
             // re-allocate if needed
             if (other.size() > capacity_) {
@@ -264,17 +266,22 @@ public:
      * @brief      Replaces the contents with those identified by initializer list ilist.
      * @param[in]  ilist: Initializer list to use as data source.
      * @return     Own reference.
+     * @throw      std::length_error: If ilist size is greater than max_size().
+     * @throw      std::bad_alloc: If malloc() (or realloc()) fails to allocate storage.
      */
     self_type& operator=(std::initializer_list<value_type> ilist)
     {
-        // clear elements
+        size_type new_size = length_check(ilist.size());
+
+        // clear
         for (size_type i = 0; i < size_; i++) {
             heap_[i].~value_type();
         }
+        size_ = 0;
 
         // re-allocate if needed
         if (ilist.size() > capacity_) {
-            reallocation(ilist.size(), realloc_switcher());
+            reallocation(new_size, realloc_switcher());
         }
 
         // assign
