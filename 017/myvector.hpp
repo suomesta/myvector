@@ -280,7 +280,7 @@ public:
         size_ = 0;
 
         // re-allocate if needed
-        if (ilist.size() > capacity_) {
+        if (new_size > capacity_) {
             reallocation(new_size, realloc_switcher());
         }
 
