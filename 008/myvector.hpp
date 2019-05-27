@@ -1,7 +1,7 @@
 /**
  * @file    myvector.hpp
- * @brief   Implementation of myvector class. 
- *          myvector class imitates of std::vector. 
+ * @brief   Implementation of myvector class.
+ *          myvector class imitates std::vector.
  * @author  toda
  * @date    2019-05-09
  * @version 0.1.0
@@ -212,7 +212,7 @@ private:
     /////////////////////////////////////////////////////////////////////////////
 
     /**
-     * @brief      Calls malloc with (sizeof(value_type) * count).
+     * @brief      Calls malloc() with (sizeof(value_type) * count).
      * @param[in]  count: Number of elements. Should be count > 0.
      * @return     A pointer to the memory block allocated by malloc().
      * @throw      std::bad_alloc: If malloc() fails to allocate storage.

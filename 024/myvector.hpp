@@ -1,7 +1,7 @@
 /**
  * @file    myvector.hpp
- * @brief   Implementation of myvector class. 
- *          myvector class imitates of std::vector. 
+ * @brief   Implementation of myvector class.
+ *          myvector class imitates std::vector.
  * @author  toda
  * @date    2019-05-26
  * @version 0.1.0
@@ -71,7 +71,7 @@ public:
     /////////////////////////////////////////////////////////////////////////////
 
     /**
-     * @brief      Constructor with size and initial value. CConstructs the container
+     * @brief      Constructor with size and initial value. Constructs the container
      *             with count copies of elements with value.
      * @param[in]  count: The size of the container.
      * @param[in]  value: The value to initialize elements of the container with.
@@ -240,7 +240,7 @@ public:
      *             other using move semantics (i.e. the data in other is moved from
      *             other into this container). other is in a valid but unspecified
      *             state afterwards. In any case, all elements originally present
-     *             in *this are either destroyed or replaced by elementwise move-assignment.
+     *             in *this are either destroyed or replaced by element-wise move-assignment.
      * @param[in]  other: Another container to use as data source.
      * @return     Own reference.
      */
@@ -497,7 +497,7 @@ public:
 
     /**
      * @brief      Returns pointer to the underlying array serving as element storage.
-     *             The pointer is such that range [data(); data() + size()) is always
+     *             The pointer is such that range [data(), data() + size()) is always
      *             a valid range, even if the container is empty (data() is not dereferenceable
      *             in that case).
      * @return     Pointer to the underlying element storage. For non-empty containers,
@@ -511,7 +511,7 @@ public:
 
     /**
      * @brief      Returns pointer to the underlying array serving as element storage.
-     *             The pointer is such that range [data(); data() + size()) is always
+     *             The pointer is such that range [data(), data() + size()) is always
      *             a valid range, even if the container is empty (data() is not dereferenceable
      *             in that case).
      * @return     Const pointer to the underlying element storage. For non-empty containers,
@@ -856,7 +856,7 @@ private:
     /////////////////////////////////////////////////////////////////////////////
 
     /**
-     * @brief      Calls malloc with (sizeof(value_type) * count).
+     * @brief      Calls malloc() with (sizeof(value_type) * count).
      * @param[in]  count: Number of elements. Should be count > 0.
      * @return     A pointer to the memory block allocated by malloc().
      * @throw      std::bad_alloc: If malloc() fails to allocate storage.

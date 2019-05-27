@@ -1,7 +1,7 @@
 /**
  * @file    myvector.hpp
- * @brief   Implementation of myvector class. 
- *          myvector class imitates of std::vector. 
+ * @brief   Implementation of myvector class.
+ *          myvector class imitates std::vector.
  * @author  toda
  * @date    2019-05-24
  * @version 0.1.0
@@ -71,7 +71,7 @@ public:
     /////////////////////////////////////////////////////////////////////////////
 
     /**
-     * @brief      Constructor with size and initial value. CConstructs the container
+     * @brief      Constructor with size and initial value. Constructs the container
      *             with count copies of elements with value.
      * @param[in]  count: The size of the container.
      * @param[in]  value: The value to initialize elements of the container with.
@@ -508,7 +508,7 @@ private:
     /////////////////////////////////////////////////////////////////////////////
 
     /**
-     * @brief      Calls malloc with (sizeof(value_type) * count).
+     * @brief      Calls malloc() with (sizeof(value_type) * count).
      * @param[in]  count: Number of elements. Should be count > 0.
      * @return     A pointer to the memory block allocated by malloc().
      * @throw      std::bad_alloc: If malloc() fails to allocate storage.

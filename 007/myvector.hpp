@@ -1,7 +1,7 @@
 /**
  * @file    myvector.hpp
- * @brief   Implementation of myvector class. 
- *          myvector class imitates of std::vector. 
+ * @brief   Implementation of myvector class.
+ *          myvector class imitates std::vector.
  * @author  toda
  * @date    2019-05-08
  * @version 0.1.0
