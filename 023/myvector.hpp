@@ -673,7 +673,7 @@ public:
      */
     void push_back(const value_type& value)
     {
-        if ((size_ + 1) > capacity_) {
+        if (need_twice_capacity()) {
             reallocation(twice_length(), realloc_switcher());
         }
         new(&heap_[size_]) value_type(value);
@@ -693,7 +693,7 @@ public:
      */
     void push_back(value_type&& value)
     {
-        if ((size_ + 1) > capacity_) {
+        if (need_twice_capacity()) {
             reallocation(twice_length(), realloc_switcher());
         }
         new(&heap_[size_]) value_type(std::forward<value_type&&>(value));
@@ -776,6 +776,21 @@ private:
         }
 
         return count;
+    }
+    /////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * @brief      Check twice capacity is needed or not.
+     * @return     true: Need twice capacity.
+     *             false: Not need twice capacity.
+     * @throw      std::length_error: If size_ already reaches MAX_SIZE.
+     */
+    bool need_twice_capacity(void) const
+    {
+        if (size_ >= MAX_SIZE) {
+            throw std::length_error("myvecotr::need_twice_capacity()");
+        }
+        return (size_ + 1) > capacity_;
     }
     /////////////////////////////////////////////////////////////////////////////
 
