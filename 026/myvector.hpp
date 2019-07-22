@@ -61,6 +61,7 @@ private:
             copy_constructible_tag
         >::type
     >::type;
+    using slide_switcher = realloc_switcher;
     /////////////////////////////////////////////////////////////////////////////
 
 public:
@@ -712,9 +713,7 @@ public:
         }
 
         // slide elements after pos
-        for (size_type i = size_; i > distance; i--) {
-            heap_[i] = heap_[i - 1];
-        }
+        incremental_slide(distance, 1, slide_switcher());
         // set inserted element
         new(&heap_[distance]) value_type(value);
         size_++;
@@ -743,9 +742,7 @@ public:
         }
 
         // slide elements after pos
-        for (size_type i = size_; i > distance; i--) {
-            heap_[i] = std::move(heap_[i - 1]);
-        }
+        incremental_slide(distance, 1, slide_switcher());
         // set inserted element
         new(&heap_[distance]) value_type(std::forward<value_type&&>(value));
         size_++;
@@ -780,9 +777,7 @@ public:
         }
 
         // slide elements after pos
-        for (size_type i = size_ + count - 1; i >= distance + count; i--) {
-            heap_[i] = heap_[i - count];
-        }
+        incremental_slide(distance, count, slide_switcher());
         // set inserted element
         for (size_type i = 0; i < count; i++) {
             new(&heap_[distance + i]) value_type(value);
@@ -830,9 +825,7 @@ public:
         }
 
         // slide elements after pos
-        for (size_type i = size_ + count - 1; i >= distance + count; i--) {
-            heap_[i] = heap_[i - count];
-        }
+        incremental_slide(distance, count, slide_switcher());
         // set inserted element
         pointer p = (&heap_[distance]);
         for (InputIt i = first; i != last; ++i) {
@@ -869,9 +862,7 @@ public:
         }
 
         // slide elements after pos
-        for (size_type i = size_ + ilist.size() - 1; i >= distance + ilist.size(); i--) {
-            heap_[i] = heap_[i - ilist.size()];
-        }
+        incremental_slide(distance, ilist.size(), slide_switcher());
         // set inserted element
         pointer p = (&heap_[distance]);
         for (const auto& i: ilist) {
@@ -1215,6 +1206,53 @@ private:
         // set new values to member variables
         heap_ = p;
         capacity_ = new_cap;
+    }
+    /////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * @brief      Does slide elements into incremental direction.
+     *             value_type shall be TriviallyCopyable.
+     * @param[in]  pos: Element index which is start position of moving.
+     * @param[in]  count: The size of the elements to be moved.
+     * @param[in]  trivially_copyable_tag: Function switcher according to value_type characteristic.
+     */
+    void incremental_slide(size_type pos, size_type count, trivially_copyable_tag)
+    {
+        for (size_type i = size_ + count - 1; i >= pos + count; i--) {
+            heap_[i] = heap_[i - count];
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * @brief      Does slide elements into incremental direction.
+     *             value_type shall be MoveConstructible.
+     * @param[in]  pos: Element index which is start position of moving.
+     * @param[in]  count: The size of the elements to be moved.
+     * @param[in]  move_constructible_tag: Function switcher according to value_type characteristic.
+     */
+    void incremental_slide(size_type pos, size_type count, move_constructible_tag)
+    {
+        for (size_type i = size_ + count - 1; i >= pos + count; i--) {
+            new(&heap_[i]) value_type(std::move(heap_[i - count]));
+            heap_[i - count].~value_type();
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * @brief      Does slide elements into incremental direction.
+     *             value_type shall be CopyConstructible.
+     * @param[in]  pos: Element index which is start position of moving.
+     * @param[in]  count: The size of the elements to be moved.
+     * @param[in]  copy_constructible_tag: Function switcher according to value_type characteristic.
+     */
+    void incremental_slide(size_type pos, size_type count, copy_constructible_tag)
+    {
+        for (size_type i = size_ + count - 1; i >= pos + count; i--) {
+            new(&heap_[i]) value_type(heap_[i - count]);
+            heap_[i - count].~value_type();
+        }
     }
     /////////////////////////////////////////////////////////////////////////////
 

@@ -3059,31 +3059,34 @@ const lest::test specification[] =
         {
             myvector<char> v = {'B'};
             char item = 'A';
-            v.insert(v.begin(), item);
+            auto i = v.insert(v.begin(), item);
 
             EXPECT('A' == *std::next(v.begin(), 0));
             EXPECT('B' == *std::next(v.begin(), 1));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(2 == std::distance(v.begin(), v.end()));
             EXPECT(2 == v.size());
             EXPECT(2 == v.capacity()); // not mandatory
 
             item = 'C';
-            v.insert(v.end(), item);
+            i = v.insert(v.end(), item);
 
             EXPECT('A' == *std::next(v.begin(), 0));
             EXPECT('B' == *std::next(v.begin(), 1));
             EXPECT('C' == *std::next(v.begin(), 2));
+            EXPECT(2 == std::distance(v.begin(), i));
             EXPECT(3 == std::distance(v.begin(), v.end()));
             EXPECT(3 == v.size());
             EXPECT(4 == v.capacity()); // not mandatory
 
             item = 'a';
-            v.insert(v.begin() + 1, item);
+            i = v.insert(v.begin() + 1, item);
 
             EXPECT('A' == *std::next(v.begin(), 0));
             EXPECT('a' == *std::next(v.begin(), 1));
             EXPECT('B' == *std::next(v.begin(), 2));
             EXPECT('C' == *std::next(v.begin(), 3));
+            EXPECT(1 == std::distance(v.begin(), i));
             EXPECT(4 == std::distance(v.begin(), v.end()));
             EXPECT(4 == v.size());
             EXPECT(4 == v.capacity()); // not mandatory
@@ -3091,9 +3094,10 @@ const lest::test specification[] =
         {
             myvector<char> v;
             char item = 'A';
-            v.insert(v.begin(), item);
+            auto i = v.insert(v.begin(), item);
 
             EXPECT('A' == *std::next(v.begin(), 0));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(1 == std::distance(v.begin(), v.end()));
             EXPECT(1 == v.size());
             EXPECT(1 == v.capacity()); // not mandatory
@@ -3101,9 +3105,10 @@ const lest::test specification[] =
         {
             myvector<char> v;
             char item = 'A';
-            v.insert(v.end(), item);
+            auto i = v.insert(v.end(), item);
 
             EXPECT('A' == *std::next(v.begin(), 0));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(1 == std::distance(v.begin(), v.end()));
             EXPECT(1 == v.size());
             EXPECT(1 == v.capacity()); // not mandatory
@@ -3111,31 +3116,34 @@ const lest::test specification[] =
         {
             myvector<int> v = {2};
             int item = 1;
-            v.insert(v.begin(), item);
+            auto i = v.insert(v.begin(), item);
 
             EXPECT(1 == *std::next(v.begin(), 0));
             EXPECT(2 == *std::next(v.begin(), 1));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(2 == std::distance(v.begin(), v.end()));
             EXPECT(2 == v.size());
             EXPECT(2 == v.capacity()); // not mandatory
 
             item = 3;
-            v.insert(v.end(), item);
+            i = v.insert(v.end(), item);
 
             EXPECT(1 == *std::next(v.begin(), 0));
             EXPECT(2 == *std::next(v.begin(), 1));
             EXPECT(3 == *std::next(v.begin(), 2));
+            EXPECT(2 == std::distance(v.begin(), i));
             EXPECT(3 == std::distance(v.begin(), v.end()));
             EXPECT(3 == v.size());
             EXPECT(4 == v.capacity()); // not mandatory
 
             item = 0;
-            v.insert(v.begin() + 1, item);
+            i = v.insert(v.begin() + 1, item);
 
             EXPECT(1 == *std::next(v.begin(), 0));
             EXPECT(0 == *std::next(v.begin(), 1));
             EXPECT(2 == *std::next(v.begin(), 2));
             EXPECT(3 == *std::next(v.begin(), 3));
+            EXPECT(1 == std::distance(v.begin(), i));
             EXPECT(4 == std::distance(v.begin(), v.end()));
             EXPECT(4 == v.size());
             EXPECT(4 == v.capacity()); // not mandatory
@@ -3143,9 +3151,10 @@ const lest::test specification[] =
         {
             myvector<int> v;
             int item = 1;
-            v.insert(v.begin(), item);
+            auto i = v.insert(v.begin(), item);
 
             EXPECT(1 == *std::next(v.begin(), 0));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(1 == std::distance(v.begin(), v.end()));
             EXPECT(1 == v.size());
             EXPECT(1 == v.capacity()); // not mandatory
@@ -3153,9 +3162,10 @@ const lest::test specification[] =
         {
             myvector<int> v;
             int item = 1;
-            v.insert(v.end(), item);
+            auto i = v.insert(v.end(), item);
 
             EXPECT(1 == *std::next(v.begin(), 0));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(1 == std::distance(v.begin(), v.end()));
             EXPECT(1 == v.size());
             EXPECT(1 == v.capacity()); // not mandatory
@@ -3163,31 +3173,34 @@ const lest::test specification[] =
         {
             myvector<double> v = {1.5};
             double item = 1.0;
-            v.insert(v.begin(), item);
+            auto i = v.insert(v.begin(), item);
 
             EXPECT(1.0 == *std::next(v.begin(), 0));
             EXPECT(1.5 == *std::next(v.begin(), 1));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(2 == std::distance(v.begin(), v.end()));
             EXPECT(2 == v.size());
             EXPECT(2 == v.capacity()); // not mandatory
 
             item = 2.0;
-            v.insert(v.end(), item);
+            i = v.insert(v.end(), item);
 
             EXPECT(1.0 == *std::next(v.begin(), 0));
             EXPECT(1.5 == *std::next(v.begin(), 1));
             EXPECT(2.0 == *std::next(v.begin(), 2));
+            EXPECT(2 == std::distance(v.begin(), i));
             EXPECT(3 == std::distance(v.begin(), v.end()));
             EXPECT(3 == v.size());
             EXPECT(4 == v.capacity()); // not mandatory
 
             item = 0.0;
-            v.insert(v.begin() + 1, item);
+            i = v.insert(v.begin() + 1, item);
 
             EXPECT(1.0 == *std::next(v.begin(), 0));
             EXPECT(0.0 == *std::next(v.begin(), 1));
             EXPECT(1.5 == *std::next(v.begin(), 2));
             EXPECT(2.0 == *std::next(v.begin(), 3));
+            EXPECT(1 == std::distance(v.begin(), i));
             EXPECT(4 == std::distance(v.begin(), v.end()));
             EXPECT(4 == v.size());
             EXPECT(4 == v.capacity()); // not mandatory
@@ -3195,9 +3208,10 @@ const lest::test specification[] =
         {
             myvector<double> v;
             double item = 1.0;
-            v.insert(v.begin(), item);
+            auto i = v.insert(v.begin(), item);
 
             EXPECT(1.0 == *std::next(v.begin(), 0));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(1 == std::distance(v.begin(), v.end()));
             EXPECT(1 == v.size());
             EXPECT(1 == v.capacity()); // not mandatory
@@ -3205,177 +3219,214 @@ const lest::test specification[] =
         {
             myvector<double> v;
             double item = 1.0;
-            v.insert(v.end(), item);
+            auto i = v.insert(v.end(), item);
 
             EXPECT(1.0 == *std::next(v.begin(), 0));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(1 == std::distance(v.begin(), v.end()));
             EXPECT(1 == v.size());
             EXPECT(1 == v.capacity()); // not mandatory
         }
         {
+            myvector<unmovable> v(1);
+            unmovable element;
+            auto i = v.insert(v.begin(), element);
+
+            EXPECT(0 == std::distance(v.begin(), i));
+            EXPECT(2 == std::distance(v.begin(), v.end()));
+            EXPECT(2 == v.size());
+            EXPECT(2 == v.capacity()); // not mandatory
+        }
+        {
             myvector<char> v = {'B'};
-            v.insert(v.begin(), 'A');
+            auto i = v.insert(v.begin(), 'A');
 
             EXPECT('A' == *std::next(v.begin(), 0));
             EXPECT('B' == *std::next(v.begin(), 1));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(2 == std::distance(v.begin(), v.end()));
             EXPECT(2 == v.size());
             EXPECT(2 == v.capacity()); // not mandatory
 
-            v.insert(v.end(), 'C');
+            i = v.insert(v.end(), 'C');
 
             EXPECT('A' == *std::next(v.begin(), 0));
             EXPECT('B' == *std::next(v.begin(), 1));
             EXPECT('C' == *std::next(v.begin(), 2));
+            EXPECT(2 == std::distance(v.begin(), i));
             EXPECT(3 == std::distance(v.begin(), v.end()));
             EXPECT(3 == v.size());
             EXPECT(4 == v.capacity()); // not mandatory
 
-            v.insert(v.begin() + 1, 'a');
+            i = v.insert(v.begin() + 1, 'a');
 
             EXPECT('A' == *std::next(v.begin(), 0));
             EXPECT('a' == *std::next(v.begin(), 1));
             EXPECT('B' == *std::next(v.begin(), 2));
             EXPECT('C' == *std::next(v.begin(), 3));
+            EXPECT(1 == std::distance(v.begin(), i));
             EXPECT(4 == std::distance(v.begin(), v.end()));
             EXPECT(4 == v.size());
             EXPECT(4 == v.capacity()); // not mandatory
         }
         {
             myvector<char> v;
-            v.insert(v.begin(), 'A');
+            auto i = v.insert(v.begin(), 'A');
 
             EXPECT('A' == *std::next(v.begin(), 0));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(1 == std::distance(v.begin(), v.end()));
             EXPECT(1 == v.size());
             EXPECT(1 == v.capacity()); // not mandatory
         }
         {
             myvector<char> v;
-            v.insert(v.end(), 'A');
+            auto i = v.insert(v.end(), 'A');
 
             EXPECT('A' == *std::next(v.begin(), 0));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(1 == std::distance(v.begin(), v.end()));
             EXPECT(1 == v.size());
             EXPECT(1 == v.capacity()); // not mandatory
         }
         {
             myvector<int> v = {2};
-            v.insert(v.begin(), 1);
+            auto i = v.insert(v.begin(), 1);
 
             EXPECT(1 == *std::next(v.begin(), 0));
             EXPECT(2 == *std::next(v.begin(), 1));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(2 == std::distance(v.begin(), v.end()));
             EXPECT(2 == v.size());
             EXPECT(2 == v.capacity()); // not mandatory
 
-            v.insert(v.end(), 3);
+            i = v.insert(v.end(), 3);
 
             EXPECT(1 == *std::next(v.begin(), 0));
             EXPECT(2 == *std::next(v.begin(), 1));
             EXPECT(3 == *std::next(v.begin(), 2));
+            EXPECT(2 == std::distance(v.begin(), i));
             EXPECT(3 == std::distance(v.begin(), v.end()));
             EXPECT(3 == v.size());
             EXPECT(4 == v.capacity()); // not mandatory
 
-            v.insert(v.begin() + 1, 0);
+            i = v.insert(v.begin() + 1, 0);
 
             EXPECT(1 == *std::next(v.begin(), 0));
             EXPECT(0 == *std::next(v.begin(), 1));
             EXPECT(2 == *std::next(v.begin(), 2));
             EXPECT(3 == *std::next(v.begin(), 3));
+            EXPECT(1 == std::distance(v.begin(), i));
             EXPECT(4 == std::distance(v.begin(), v.end()));
             EXPECT(4 == v.size());
             EXPECT(4 == v.capacity()); // not mandatory
         }
         {
             myvector<int> v;
-            v.insert(v.begin(), 1);
+            auto i = v.insert(v.begin(), 1);
 
             EXPECT(1 == *std::next(v.begin(), 0));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(1 == std::distance(v.begin(), v.end()));
             EXPECT(1 == v.size());
             EXPECT(1 == v.capacity()); // not mandatory
         }
         {
             myvector<int> v;
-            v.insert(v.end(), 1);
+            auto i = v.insert(v.end(), 1);
 
             EXPECT(1 == *std::next(v.begin(), 0));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(1 == std::distance(v.begin(), v.end()));
             EXPECT(1 == v.size());
             EXPECT(1 == v.capacity()); // not mandatory
         }
         {
             myvector<double> v = {1.5};
-            v.insert(v.begin(), 1.0);
+            auto i = v.insert(v.begin(), 1.0);
 
             EXPECT(1.0 == *std::next(v.begin(), 0));
             EXPECT(1.5 == *std::next(v.begin(), 1));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(2 == std::distance(v.begin(), v.end()));
             EXPECT(2 == v.size());
             EXPECT(2 == v.capacity()); // not mandatory
 
-            v.insert(v.end(), 2.0);
+            i = v.insert(v.end(), 2.0);
 
             EXPECT(1.0 == *std::next(v.begin(), 0));
             EXPECT(1.5 == *std::next(v.begin(), 1));
             EXPECT(2.0 == *std::next(v.begin(), 2));
+            EXPECT(2 == std::distance(v.begin(), i));
             EXPECT(3 == std::distance(v.begin(), v.end()));
             EXPECT(3 == v.size());
             EXPECT(4 == v.capacity()); // not mandatory
 
-            v.insert(v.begin() + 1, 0.0);
+            i = v.insert(v.begin() + 1, 0.0);
 
             EXPECT(1.0 == *std::next(v.begin(), 0));
             EXPECT(0.0 == *std::next(v.begin(), 1));
             EXPECT(1.5 == *std::next(v.begin(), 2));
             EXPECT(2.0 == *std::next(v.begin(), 3));
+            EXPECT(1 == std::distance(v.begin(), i));
             EXPECT(4 == std::distance(v.begin(), v.end()));
             EXPECT(4 == v.size());
             EXPECT(4 == v.capacity()); // not mandatory
         }
         {
             myvector<double> v;
-            v.insert(v.begin(), 1.0);
+            auto i = v.insert(v.begin(), 1.0);
 
             EXPECT(1.0 == *std::next(v.begin(), 0));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(1 == std::distance(v.begin(), v.end()));
             EXPECT(1 == v.size());
             EXPECT(1 == v.capacity()); // not mandatory
         }
         {
             myvector<double> v;
-            v.insert(v.end(), 1.0);
+            auto i = v.insert(v.end(), 1.0);
 
             EXPECT(1.0 == *std::next(v.begin(), 0));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(1 == std::distance(v.begin(), v.end()));
             EXPECT(1 == v.size());
             EXPECT(1 == v.capacity()); // not mandatory
         }
         {
+            myvector<noncopyable> v(1);
+            auto i = v.insert(v.begin(), noncopyable());
+
+            EXPECT(0 == std::distance(v.begin(), i));
+            EXPECT(2 == std::distance(v.begin(), v.end()));
+            EXPECT(2 == v.size());
+            EXPECT(2 == v.capacity()); // not mandatory
+        }
+        {
             myvector<char> v = {'B'};
-            v.insert(v.begin(), 2, 'A');
+            auto i = v.insert(v.begin(), 2, 'A');
 
             EXPECT('A' == *std::next(v.begin(), 0));
             EXPECT('A' == *std::next(v.begin(), 1));
             EXPECT('B' == *std::next(v.begin(), 2));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(3 == std::distance(v.begin(), v.end()));
             EXPECT(3 == v.size());
             EXPECT(3 == v.capacity()); // not mandatory
 
-            v.insert(v.end(), 2, 'C');
+            i = v.insert(v.end(), 2, 'C');
 
             EXPECT('A' == *std::next(v.begin(), 0));
             EXPECT('A' == *std::next(v.begin(), 1));
             EXPECT('B' == *std::next(v.begin(), 2));
             EXPECT('C' == *std::next(v.begin(), 3));
             EXPECT('C' == *std::next(v.begin(), 4));
+            EXPECT(3 == std::distance(v.begin(), i));
             EXPECT(5 == std::distance(v.begin(), v.end()));
             EXPECT(5 == v.size());
             EXPECT(5 == v.capacity()); // not mandatory
 
-            v.insert(v.begin() + 2, 1, 'a');
+            i = v.insert(v.begin() + 2, 1, 'a');
 
             EXPECT('A' == *std::next(v.begin(), 0));
             EXPECT('A' == *std::next(v.begin(), 1));
@@ -3383,26 +3434,29 @@ const lest::test specification[] =
             EXPECT('B' == *std::next(v.begin(), 3));
             EXPECT('C' == *std::next(v.begin(), 4));
             EXPECT('C' == *std::next(v.begin(), 5));
+            EXPECT(2 == std::distance(v.begin(), i));
             EXPECT(6 == std::distance(v.begin(), v.end()));
             EXPECT(6 == v.size());
             EXPECT(6 == v.capacity()); // not mandatory
         }
         {
             myvector<char> v = {};
-            v.insert(v.begin(), 2, 'A');
+            auto i = v.insert(v.begin(), 2, 'A');
 
             EXPECT('A' == *std::next(v.begin(), 0));
             EXPECT('A' == *std::next(v.begin(), 1));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(2 == std::distance(v.begin(), v.end()));
             EXPECT(2 == v.size());
             EXPECT(2 == v.capacity()); // not mandatory
         }
         {
             myvector<char> v = {};
-            v.insert(v.end(), 2, 'A');
+            auto i = v.insert(v.end(), 2, 'A');
 
             EXPECT('A' == *std::next(v.begin(), 0));
             EXPECT('A' == *std::next(v.begin(), 1));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(2 == std::distance(v.begin(), v.end()));
             EXPECT(2 == v.size());
             EXPECT(2 == v.capacity()); // not mandatory
@@ -3411,34 +3465,36 @@ const lest::test specification[] =
             myvector<char> v = {'A', 'B', 'C'};
             auto i = v.insert(std::next(v.begin(), 1), 0, 'a');
 
-            EXPECT(i == std::next(v.begin(), 1));
+            EXPECT(1 == std::distance(v.begin(), i));
             EXPECT(3 == std::distance(v.begin(), v.end()));
             EXPECT(3 == v.size());
             EXPECT(3 == v.capacity()); // not mandatory
         }
         {
             myvector<int> v = {2};
-            v.insert(v.begin(), 2, 1);
+            auto i = v.insert(v.begin(), 2, 1);
 
             EXPECT(1 == *std::next(v.begin(), 0));
             EXPECT(1 == *std::next(v.begin(), 1));
             EXPECT(2 == *std::next(v.begin(), 2));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(3 == std::distance(v.begin(), v.end()));
             EXPECT(3 == v.size());
             EXPECT(3 == v.capacity()); // not mandatory
 
-            v.insert(v.end(), 2, 3);
+            i = v.insert(v.end(), 2, 3);
 
             EXPECT(1 == *std::next(v.begin(), 0));
             EXPECT(1 == *std::next(v.begin(), 1));
             EXPECT(2 == *std::next(v.begin(), 2));
             EXPECT(3 == *std::next(v.begin(), 3));
             EXPECT(3 == *std::next(v.begin(), 4));
+            EXPECT(3 == std::distance(v.begin(), i));
             EXPECT(5 == std::distance(v.begin(), v.end()));
             EXPECT(5 == v.size());
             EXPECT(5 == v.capacity()); // not mandatory
 
-            v.insert(v.begin() + 2, 1, 0);
+            i = v.insert(v.begin() + 2, 1, 0);
 
             EXPECT(1 == *std::next(v.begin(), 0));
             EXPECT(1 == *std::next(v.begin(), 1));
@@ -3446,26 +3502,29 @@ const lest::test specification[] =
             EXPECT(2 == *std::next(v.begin(), 3));
             EXPECT(3 == *std::next(v.begin(), 4));
             EXPECT(3 == *std::next(v.begin(), 5));
+            EXPECT(2 == std::distance(v.begin(), i));
             EXPECT(6 == std::distance(v.begin(), v.end()));
             EXPECT(6 == v.size());
             EXPECT(6 == v.capacity()); // not mandatory
         }
         {
             myvector<int> v = {};
-            v.insert(v.begin(), 2, 1);
+            auto i = v.insert(v.begin(), 2, 1);
 
             EXPECT(1 == *std::next(v.begin(), 0));
             EXPECT(1 == *std::next(v.begin(), 1));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(2 == std::distance(v.begin(), v.end()));
             EXPECT(2 == v.size());
             EXPECT(2 == v.capacity()); // not mandatory
         }
         {
             myvector<int> v = {};
-            v.insert(v.end(), 2, 1);
+            auto i = v.insert(v.end(), 2, 1);
 
             EXPECT(1 == *std::next(v.begin(), 0));
             EXPECT(1 == *std::next(v.begin(), 1));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(2 == std::distance(v.begin(), v.end()));
             EXPECT(2 == v.size());
             EXPECT(2 == v.capacity()); // not mandatory
@@ -3474,34 +3533,36 @@ const lest::test specification[] =
             myvector<int> v = {1, 2, 3};
             auto i = v.insert(std::next(v.begin(), 1), 0, 4);
 
-            EXPECT(i == std::next(v.begin(), 1));
+            EXPECT(1 == std::distance(v.begin(), i));
             EXPECT(3 == std::distance(v.begin(), v.end()));
             EXPECT(3 == v.size());
             EXPECT(3 == v.capacity()); // not mandatory
         }
         {
             myvector<double> v = {1.5};
-            v.insert(v.begin(), 2, 1.0);
+            auto i = v.insert(v.begin(), 2, 1.0);
 
             EXPECT(1.0 == *std::next(v.begin(), 0));
             EXPECT(1.0 == *std::next(v.begin(), 1));
             EXPECT(1.5 == *std::next(v.begin(), 2));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(3 == std::distance(v.begin(), v.end()));
             EXPECT(3 == v.size());
             EXPECT(3 == v.capacity()); // not mandatory
 
-            v.insert(v.end(), 2, 2.0);
+            i = v.insert(v.end(), 2, 2.0);
 
             EXPECT(1.0 == *std::next(v.begin(), 0));
             EXPECT(1.0 == *std::next(v.begin(), 1));
             EXPECT(1.5 == *std::next(v.begin(), 2));
             EXPECT(2.0 == *std::next(v.begin(), 3));
             EXPECT(2.0 == *std::next(v.begin(), 4));
+            EXPECT(3 == std::distance(v.begin(), i));
             EXPECT(5 == std::distance(v.begin(), v.end()));
             EXPECT(5 == v.size());
             EXPECT(5 == v.capacity()); // not mandatory
 
-            v.insert(v.begin() + 2, 1, 0.0);
+            i = v.insert(v.begin() + 2, 1, 0.0);
 
             EXPECT(1.0 == *std::next(v.begin(), 0));
             EXPECT(1.0 == *std::next(v.begin(), 1));
@@ -3509,26 +3570,29 @@ const lest::test specification[] =
             EXPECT(1.5 == *std::next(v.begin(), 3));
             EXPECT(2.0 == *std::next(v.begin(), 4));
             EXPECT(2.0 == *std::next(v.begin(), 5));
+            EXPECT(2 == std::distance(v.begin(), i));
             EXPECT(6 == std::distance(v.begin(), v.end()));
             EXPECT(6 == v.size());
             EXPECT(6 == v.capacity()); // not mandatory
         }
         {
             myvector<double> v = {};
-            v.insert(v.begin(), 2, 1.0);
+            auto i = v.insert(v.begin(), 2, 1.0);
 
             EXPECT(1.0 == *std::next(v.begin(), 0));
             EXPECT(1.0 == *std::next(v.begin(), 1));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(2 == std::distance(v.begin(), v.end()));
             EXPECT(2 == v.size());
             EXPECT(2 == v.capacity()); // not mandatory
         }
         {
             myvector<double> v = {};
-            v.insert(v.end(), 2, 1.0);
+            auto i = v.insert(v.end(), 2, 1.0);
 
             EXPECT(1.0 == *std::next(v.begin(), 0));
             EXPECT(1.0 == *std::next(v.begin(), 1));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(2 == std::distance(v.begin(), v.end()));
             EXPECT(2 == v.size());
             EXPECT(2 == v.capacity()); // not mandatory
@@ -3537,7 +3601,17 @@ const lest::test specification[] =
             myvector<double> v = {1.0, 1.5, 2.0};
             auto i = v.insert(std::next(v.begin(), 1), 0, 0.0);
 
-            EXPECT(i == std::next(v.begin(), 1));
+            EXPECT(1 == std::distance(v.begin(), i));
+            EXPECT(3 == std::distance(v.begin(), v.end()));
+            EXPECT(3 == v.size());
+            EXPECT(3 == v.capacity()); // not mandatory
+        }
+        {
+            myvector<unmovable> v(1);
+            unmovable element;
+            auto i = v.insert(v.begin(), 2, element);
+
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(3 == std::distance(v.begin(), v.end()));
             EXPECT(3 == v.size());
             EXPECT(3 == v.capacity()); // not mandatory
@@ -3545,29 +3619,31 @@ const lest::test specification[] =
         {
             myvector<char> v = {'B'};
             std::list<char> src_list = {'A', 'C'};
-            v.insert(v.begin(), src_list.begin(), src_list.end());
+            auto i = v.insert(v.begin(), src_list.begin(), src_list.end());
 
             EXPECT('A' == *std::next(v.begin(), 0));
             EXPECT('C' == *std::next(v.begin(), 1));
             EXPECT('B' == *std::next(v.begin(), 2));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(3 == std::distance(v.begin(), v.end()));
             EXPECT(3 == v.size());
             EXPECT(3 == v.capacity()); // not mandatory
 
             char src_array[2] = {'C', 'A'};
-            v.insert(v.end(), std::begin(src_array), std::end(src_array));
+            i = v.insert(v.end(), std::begin(src_array), std::end(src_array));
 
             EXPECT('A' == *std::next(v.begin(), 0));
             EXPECT('C' == *std::next(v.begin(), 1));
             EXPECT('B' == *std::next(v.begin(), 2));
             EXPECT('C' == *std::next(v.begin(), 3));
             EXPECT('A' == *std::next(v.begin(), 4));
+            EXPECT(3 == std::distance(v.begin(), i));
             EXPECT(5 == std::distance(v.begin(), v.end()));
             EXPECT(5 == v.size());
             EXPECT(5 == v.capacity()); // not mandatory
 
             src_list = {'a'};
-            v.insert(v.begin() + 2, src_list.begin(), src_list.end());
+            i = v.insert(v.begin() + 2, src_list.begin(), src_list.end());
 
             EXPECT('A' == *std::next(v.begin(), 0));
             EXPECT('C' == *std::next(v.begin(), 1));
@@ -3575,6 +3651,7 @@ const lest::test specification[] =
             EXPECT('B' == *std::next(v.begin(), 3));
             EXPECT('C' == *std::next(v.begin(), 4));
             EXPECT('A' == *std::next(v.begin(), 5));
+            EXPECT(2 == std::distance(v.begin(), i));
             EXPECT(6 == std::distance(v.begin(), v.end()));
             EXPECT(6 == v.size());
             EXPECT(6 == v.capacity()); // not mandatory
@@ -3582,10 +3659,11 @@ const lest::test specification[] =
         {
             myvector<char> v = {};
             std::list<char> src_list = {'A', 'B'};
-            v.insert(v.begin(), src_list.begin(), src_list.end());
+            auto i = v.insert(v.begin(), src_list.begin(), src_list.end());
 
             EXPECT('A' == *std::next(v.begin(), 0));
             EXPECT('B' == *std::next(v.begin(), 1));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(2 == std::distance(v.begin(), v.end()));
             EXPECT(2 == v.size());
             EXPECT(2 == v.capacity()); // not mandatory
@@ -3593,10 +3671,11 @@ const lest::test specification[] =
         {
             myvector<char> v = {};
             std::list<char> src_list = {'A', 'B'};
-            v.insert(v.end(), src_list.begin(), src_list.end());
+            auto i = v.insert(v.end(), src_list.begin(), src_list.end());
 
             EXPECT('A' == *std::next(v.begin(), 0));
             EXPECT('B' == *std::next(v.begin(), 1));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(2 == std::distance(v.begin(), v.end()));
             EXPECT(2 == v.size());
             EXPECT(2 == v.capacity()); // not mandatory
@@ -3606,7 +3685,7 @@ const lest::test specification[] =
             std::list<char> src_list = {};
             auto i = v.insert(std::next(v.begin(), 1), src_list.begin(), src_list.end());
 
-            EXPECT(i == std::next(v.begin(), 1));
+            EXPECT(1 == std::distance(v.begin(), i));
             EXPECT(3 == std::distance(v.begin(), v.end()));
             EXPECT(3 == v.size());
             EXPECT(3 == v.capacity()); // not mandatory
@@ -3614,29 +3693,31 @@ const lest::test specification[] =
         {
             myvector<int> v = {1};
             std::list<int> src_list = {0, 2};
-            v.insert(v.begin(), src_list.begin(), src_list.end());
+            auto i = v.insert(v.begin(), src_list.begin(), src_list.end());
 
             EXPECT(0 == *std::next(v.begin(), 0));
             EXPECT(2 == *std::next(v.begin(), 1));
             EXPECT(1 == *std::next(v.begin(), 2));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(3 == std::distance(v.begin(), v.end()));
             EXPECT(3 == v.size());
             EXPECT(3 == v.capacity()); // not mandatory
 
             int src_array[2] = {2, 0};
-            v.insert(v.end(), std::begin(src_array), std::end(src_array));
+            i = v.insert(v.end(), std::begin(src_array), std::end(src_array));
 
             EXPECT(0 == *std::next(v.begin(), 0));
             EXPECT(2 == *std::next(v.begin(), 1));
             EXPECT(1 == *std::next(v.begin(), 2));
             EXPECT(2 == *std::next(v.begin(), 3));
             EXPECT(0 == *std::next(v.begin(), 4));
+            EXPECT(3 == std::distance(v.begin(), i));
             EXPECT(5 == std::distance(v.begin(), v.end()));
             EXPECT(5 == v.size());
             EXPECT(5 == v.capacity()); // not mandatory
 
             src_list = {-1};
-            v.insert(v.begin() + 2, src_list.begin(), src_list.end());
+            i = v.insert(v.begin() + 2, src_list.begin(), src_list.end());
 
             EXPECT(0 == *std::next(v.begin(), 0));
             EXPECT(2 == *std::next(v.begin(), 1));
@@ -3644,6 +3725,7 @@ const lest::test specification[] =
             EXPECT(1 == *std::next(v.begin(), 3));
             EXPECT(2 == *std::next(v.begin(), 4));
             EXPECT(0 == *std::next(v.begin(), 5));
+            EXPECT(2 == std::distance(v.begin(), i));
             EXPECT(6 == std::distance(v.begin(), v.end()));
             EXPECT(6 == v.size());
             EXPECT(6 == v.capacity()); // not mandatory
@@ -3651,10 +3733,11 @@ const lest::test specification[] =
         {
             myvector<int> v = {};
             std::list<int> src_list = {1, 2};
-            v.insert(v.begin(), src_list.begin(), src_list.end());
+            auto i = v.insert(v.begin(), src_list.begin(), src_list.end());
 
             EXPECT(1 == *std::next(v.begin(), 0));
             EXPECT(2 == *std::next(v.begin(), 1));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(2 == std::distance(v.begin(), v.end()));
             EXPECT(2 == v.size());
             EXPECT(2 == v.capacity()); // not mandatory
@@ -3662,10 +3745,11 @@ const lest::test specification[] =
         {
             myvector<int> v = {};
             std::list<int> src_list = {1, 2};
-            v.insert(v.end(), src_list.begin(), src_list.end());
+            auto i = v.insert(v.end(), src_list.begin(), src_list.end());
 
             EXPECT(1 == *std::next(v.begin(), 0));
             EXPECT(2 == *std::next(v.begin(), 1));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(2 == std::distance(v.begin(), v.end()));
             EXPECT(2 == v.size());
             EXPECT(2 == v.capacity()); // not mandatory
@@ -3675,7 +3759,7 @@ const lest::test specification[] =
             std::list<int> src_list = {};
             auto i = v.insert(std::next(v.begin(), 1), src_list.begin(), src_list.end());
 
-            EXPECT(i == std::next(v.begin(), 1));
+            EXPECT(1 == std::distance(v.begin(), i));
             EXPECT(3 == std::distance(v.begin(), v.end()));
             EXPECT(3 == v.size());
             EXPECT(3 == v.capacity()); // not mandatory
@@ -3683,29 +3767,31 @@ const lest::test specification[] =
         {
             myvector<double> v = {0.5};
             std::list<double> src_list = {0.0, 1.0};
-            v.insert(v.begin(), src_list.begin(), src_list.end());
+            auto i = v.insert(v.begin(), src_list.begin(), src_list.end());
 
             EXPECT(0.0 == *std::next(v.begin(), 0));
             EXPECT(1.0 == *std::next(v.begin(), 1));
             EXPECT(0.5 == *std::next(v.begin(), 2));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(3 == std::distance(v.begin(), v.end()));
             EXPECT(3 == v.size());
             EXPECT(3 == v.capacity()); // not mandatory
 
             double src_array[2] = {1.0, 0.0};
-            v.insert(v.end(), std::begin(src_array), std::end(src_array));
+            i = v.insert(v.end(), std::begin(src_array), std::end(src_array));
 
             EXPECT(0.0 == *std::next(v.begin(), 0));
             EXPECT(1.0 == *std::next(v.begin(), 1));
             EXPECT(0.5 == *std::next(v.begin(), 2));
             EXPECT(1.0 == *std::next(v.begin(), 3));
             EXPECT(0.0 == *std::next(v.begin(), 4));
+            EXPECT(3 == std::distance(v.begin(), i));
             EXPECT(5 == std::distance(v.begin(), v.end()));
             EXPECT(5 == v.size());
             EXPECT(5 == v.capacity()); // not mandatory
 
             src_list = {-1.0};
-            v.insert(v.begin() + 2, src_list.begin(), src_list.end());
+            i = v.insert(v.begin() + 2, src_list.begin(), src_list.end());
 
             EXPECT(0.0 == *std::next(v.begin(), 0));
             EXPECT(1.0 == *std::next(v.begin(), 1));
@@ -3713,6 +3799,7 @@ const lest::test specification[] =
             EXPECT(0.5 == *std::next(v.begin(), 3));
             EXPECT(1.0 == *std::next(v.begin(), 4));
             EXPECT(0.0 == *std::next(v.begin(), 5));
+            EXPECT(2 == std::distance(v.begin(), i));
             EXPECT(6 == std::distance(v.begin(), v.end()));
             EXPECT(6 == v.size());
             EXPECT(6 == v.capacity()); // not mandatory
@@ -3720,10 +3807,11 @@ const lest::test specification[] =
         {
             myvector<double> v = {};
             std::list<double> src_list = {0.5, 1.0};
-            v.insert(v.begin(), src_list.begin(), src_list.end());
+            auto i = v.insert(v.begin(), src_list.begin(), src_list.end());
 
             EXPECT(0.5 == *std::next(v.begin(), 0));
             EXPECT(1.0 == *std::next(v.begin(), 1));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(2 == std::distance(v.begin(), v.end()));
             EXPECT(2 == v.size());
             EXPECT(2 == v.capacity()); // not mandatory
@@ -3731,10 +3819,11 @@ const lest::test specification[] =
         {
             myvector<double> v = {};
             std::list<double> src_list = {0.5, 1.0};
-            v.insert(v.end(), src_list.begin(), src_list.end());
+            auto i = v.insert(v.end(), src_list.begin(), src_list.end());
 
             EXPECT(0.5 == *std::next(v.begin(), 0));
             EXPECT(1.0 == *std::next(v.begin(), 1));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(2 == std::distance(v.begin(), v.end()));
             EXPECT(2 == v.size());
             EXPECT(2 == v.capacity()); // not mandatory
@@ -3744,34 +3833,46 @@ const lest::test specification[] =
             std::list<double> src_list = {};
             auto i = v.insert(std::next(v.begin(), 1), src_list.begin(), src_list.end());
 
-            EXPECT(i == std::next(v.begin(), 1));
+            EXPECT(1 == std::distance(v.begin(), i));
             EXPECT(3 == std::distance(v.begin(), v.end()));
             EXPECT(3 == v.size());
             EXPECT(3 == v.capacity()); // not mandatory
         }
         {
+            myvector<unmovable> v(3);
+            std::list<unmovable> element(2);
+            auto i  = v.insert(v.begin(), element.begin(), element.end());
+
+            EXPECT(0 == std::distance(v.begin(), i));
+            EXPECT(5 == std::distance(v.begin(), v.end()));
+            EXPECT(5 == v.size());
+            EXPECT(5 == v.capacity()); // not mandatory
+        }
+        {
             myvector<char> v = {'C'};
-            v.insert(v.begin(), {'A', 'B'});
+            auto i = v.insert(v.begin(), {'A', 'B'});
 
             EXPECT('A' == *std::next(v.begin(), 0));
             EXPECT('B' == *std::next(v.begin(), 1));
             EXPECT('C' == *std::next(v.begin(), 2));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(3 == std::distance(v.begin(), v.end()));
             EXPECT(3 == v.size());
             EXPECT(3 == v.capacity()); // not mandatory
 
-            v.insert(v.end(), {'B', 'A'});
+            i = v.insert(v.end(), {'B', 'A'});
 
             EXPECT('A' == *std::next(v.begin(), 0));
             EXPECT('B' == *std::next(v.begin(), 1));
             EXPECT('C' == *std::next(v.begin(), 2));
             EXPECT('B' == *std::next(v.begin(), 3));
             EXPECT('A' == *std::next(v.begin(), 4));
+            EXPECT(3 == std::distance(v.begin(), i));
             EXPECT(5 == std::distance(v.begin(), v.end()));
             EXPECT(5 == v.size());
             EXPECT(5 == v.capacity()); // not mandatory
 
-            v.insert(v.begin() + 2, {'a'});
+            i = v.insert(v.begin() + 2, {'a'});
 
             EXPECT('A' == *std::next(v.begin(), 0));
             EXPECT('B' == *std::next(v.begin(), 1));
@@ -3779,26 +3880,29 @@ const lest::test specification[] =
             EXPECT('C' == *std::next(v.begin(), 3));
             EXPECT('B' == *std::next(v.begin(), 4));
             EXPECT('A' == *std::next(v.begin(), 5));
+            EXPECT(2 == std::distance(v.begin(), i));
             EXPECT(6 == std::distance(v.begin(), v.end()));
             EXPECT(6 == v.size());
             EXPECT(6 == v.capacity()); // not mandatory
         }
         {
             myvector<int> v = {};
-            v.insert(v.begin(), {'A', 'B'});
+            auto i = v.insert(v.begin(), {'A', 'B'});
 
             EXPECT('A' == *std::next(v.begin(), 0));
             EXPECT('B' == *std::next(v.begin(), 1));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(2 == std::distance(v.begin(), v.end()));
             EXPECT(2 == v.size());
             EXPECT(2 == v.capacity()); // not mandatory
         }
         {
             myvector<int> v = {};
-            v.insert(v.end(), {'A', 'B'});
+            auto i = v.insert(v.end(), {'A', 'B'});
 
             EXPECT('A' == *std::next(v.begin(), 0));
             EXPECT('B' == *std::next(v.begin(), 1));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(2 == std::distance(v.begin(), v.end()));
             EXPECT(2 == v.size());
             EXPECT(2 == v.capacity()); // not mandatory
@@ -3807,34 +3911,36 @@ const lest::test specification[] =
             myvector<int> v = {'A', 'B', 'C'};
             auto i = v.insert(std::next(v.begin(), 1), {});
 
-            EXPECT(i == std::next(v.begin(), 1));
+            EXPECT(1 == std::distance(v.begin(), i));
             EXPECT(3 == std::distance(v.begin(), v.end()));
             EXPECT(3 == v.size());
             EXPECT(3 == v.capacity()); // not mandatory
         }
         {
             myvector<int> v = {2};
-            v.insert(v.begin(), {0, 1});
+            auto i = v.insert(v.begin(), {0, 1});
 
             EXPECT(0 == *std::next(v.begin(), 0));
             EXPECT(1 == *std::next(v.begin(), 1));
             EXPECT(2 == *std::next(v.begin(), 2));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(3 == std::distance(v.begin(), v.end()));
             EXPECT(3 == v.size());
             EXPECT(3 == v.capacity()); // not mandatory
 
-            v.insert(v.end(), {1, 0});
+            i = v.insert(v.end(), {1, 0});
 
             EXPECT(0 == *std::next(v.begin(), 0));
             EXPECT(1 == *std::next(v.begin(), 1));
             EXPECT(2 == *std::next(v.begin(), 2));
             EXPECT(1 == *std::next(v.begin(), 3));
             EXPECT(0 == *std::next(v.begin(), 4));
+            EXPECT(3 == std::distance(v.begin(), i));
             EXPECT(5 == std::distance(v.begin(), v.end()));
             EXPECT(5 == v.size());
             EXPECT(5 == v.capacity()); // not mandatory
 
-            v.insert(v.begin() + 2, {-1});
+            i = v.insert(v.begin() + 2, {-1});
 
             EXPECT(0 == *std::next(v.begin(), 0));
             EXPECT(1 == *std::next(v.begin(), 1));
@@ -3842,26 +3948,29 @@ const lest::test specification[] =
             EXPECT(2 == *std::next(v.begin(), 3));
             EXPECT(1 == *std::next(v.begin(), 4));
             EXPECT(0 == *std::next(v.begin(), 5));
+            EXPECT(2 == std::distance(v.begin(), i));
             EXPECT(6 == std::distance(v.begin(), v.end()));
             EXPECT(6 == v.size());
             EXPECT(6 == v.capacity()); // not mandatory
         }
         {
             myvector<int> v = {};
-            v.insert(v.begin(), {1, 2});
+            auto i = v.insert(v.begin(), {1, 2});
 
             EXPECT(1 == *std::next(v.begin(), 0));
             EXPECT(2 == *std::next(v.begin(), 1));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(2 == std::distance(v.begin(), v.end()));
             EXPECT(2 == v.size());
             EXPECT(2 == v.capacity()); // not mandatory
         }
         {
             myvector<int> v = {};
-            v.insert(v.end(), {1, 2});
+            auto i = v.insert(v.end(), {1, 2});
 
             EXPECT(1 == *std::next(v.begin(), 0));
             EXPECT(2 == *std::next(v.begin(), 1));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(2 == std::distance(v.begin(), v.end()));
             EXPECT(2 == v.size());
             EXPECT(2 == v.capacity()); // not mandatory
@@ -3870,34 +3979,36 @@ const lest::test specification[] =
             myvector<int> v = {1, 2, 3};
             auto i = v.insert(std::next(v.begin(), 1), {});
 
-            EXPECT(i == std::next(v.begin(), 1));
+            EXPECT(1 == std::distance(v.begin(), i));
             EXPECT(3 == std::distance(v.begin(), v.end()));
             EXPECT(3 == v.size());
             EXPECT(3 == v.capacity()); // not mandatory
         }
         {
             myvector<double> v = {0.5};
-            v.insert(v.begin(), {0.0, 1.0});
+            auto i = v.insert(v.begin(), {0.0, 1.0});
 
             EXPECT(0.0 == *std::next(v.begin(), 0));
             EXPECT(1.0 == *std::next(v.begin(), 1));
             EXPECT(0.5 == *std::next(v.begin(), 2));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(3 == std::distance(v.begin(), v.end()));
             EXPECT(3 == v.size());
             EXPECT(3 == v.capacity()); // not mandatory
 
-            v.insert(v.end(), {1.0, 0.0});
+            i = v.insert(v.end(), {1.0, 0.0});
 
             EXPECT(0.0 == *std::next(v.begin(), 0));
             EXPECT(1.0 == *std::next(v.begin(), 1));
             EXPECT(0.5 == *std::next(v.begin(), 2));
             EXPECT(1.0 == *std::next(v.begin(), 3));
             EXPECT(0.0 == *std::next(v.begin(), 4));
+            EXPECT(3 == std::distance(v.begin(), i));
             EXPECT(5 == std::distance(v.begin(), v.end()));
             EXPECT(5 == v.size());
             EXPECT(5 == v.capacity()); // not mandatory
 
-            v.insert(v.begin() + 2, {-1.0});
+            i = v.insert(v.begin() + 2, {-1.0});
 
             EXPECT(0.0 == *std::next(v.begin(), 0));
             EXPECT(1.0 == *std::next(v.begin(), 1));
@@ -3905,26 +4016,29 @@ const lest::test specification[] =
             EXPECT(0.5 == *std::next(v.begin(), 3));
             EXPECT(1.0 == *std::next(v.begin(), 4));
             EXPECT(0.0 == *std::next(v.begin(), 5));
+            EXPECT(2 == std::distance(v.begin(), i));
             EXPECT(6 == std::distance(v.begin(), v.end()));
             EXPECT(6 == v.size());
             EXPECT(6 == v.capacity()); // not mandatory
         }
         {
             myvector<double> v = {};
-            v.insert(v.begin(), {0.5, 1.0});
+            auto i = v.insert(v.begin(), {0.5, 1.0});
 
             EXPECT(0.5 == *std::next(v.begin(), 0));
             EXPECT(1.0 == *std::next(v.begin(), 1));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(2 == std::distance(v.begin(), v.end()));
             EXPECT(2 == v.size());
             EXPECT(2 == v.capacity()); // not mandatory
         }
         {
             myvector<double> v = {};
-            v.insert(v.end(), {0.5, 1.0});
+            auto i = v.insert(v.end(), {0.5, 1.0});
 
             EXPECT(0.5 == *std::next(v.begin(), 0));
             EXPECT(1.0 == *std::next(v.begin(), 1));
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(2 == std::distance(v.begin(), v.end()));
             EXPECT(2 == v.size());
             EXPECT(2 == v.capacity()); // not mandatory
@@ -3933,7 +4047,16 @@ const lest::test specification[] =
             myvector<double> v = {0.5, 1.0, 1.5};
             auto i = v.insert(std::next(v.begin(), 1), {});
 
-            EXPECT(i == std::next(v.begin(), 1));
+            EXPECT(1 == std::distance(v.begin(), i));
+            EXPECT(3 == std::distance(v.begin(), v.end()));
+            EXPECT(3 == v.size());
+            EXPECT(3 == v.capacity()); // not mandatory
+        }
+        {
+            myvector<unmovable> v(1);
+            auto i = v.insert(v.begin(), {{}, {}});
+
+            EXPECT(0 == std::distance(v.begin(), i));
             EXPECT(3 == std::distance(v.begin(), v.end()));
             EXPECT(3 == v.size());
             EXPECT(3 == v.capacity()); // not mandatory
