@@ -2719,12 +2719,12 @@ const lest::test specification[] =
         {
             myvector<char> v{'A', 'B', 'C'};
 
-            EXPECT(&(*v.begin()) == v.data());
+            EXPECT((&(*v.begin()) == v.data()));
         }
         {
             myvector<char> v;
 
-            EXPECT(&(*v.begin()) == v.data());
+            EXPECT((&(*v.begin()) == v.data()));
         }
         {
             myvector<char> v{'A', 'B', 'C'};
@@ -2741,12 +2741,12 @@ const lest::test specification[] =
         {
             myvector<int> v{1, 2, 3};
 
-            EXPECT(&(*v.begin()) == v.data());
+            EXPECT((&(*v.begin()) == v.data()));
         }
         {
             myvector<int> v;
 
-            EXPECT(&(*v.begin()) == v.data());
+            EXPECT((&(*v.begin()) == v.data()));
         }
         {
             myvector<int> v{1, 2, 3};
@@ -2763,12 +2763,12 @@ const lest::test specification[] =
         {
             myvector<double> v{0.5, 1.0, 1.5};
 
-            EXPECT(&(*v.begin()) == v.data());
+            EXPECT((&(*v.begin()) == v.data()));
         }
         {
             myvector<double> v;
 
-            EXPECT(&(*v.begin()) == v.data());
+            EXPECT((&(*v.begin()) == v.data()));
         }
         {
             myvector<double> v{0.5, 1.0, 1.5};
@@ -4366,7 +4366,7 @@ const lest::test specification[] =
             auto& i1 = v.emplace_back('A');
 
             EXPECT('A' == *std::next(v.begin(), 0));
-            EXPECT(&(v[0]) == &i1);
+            EXPECT((&(v[0]) == &i1));
             EXPECT(1 == std::distance(v.begin(), v.end()));
             EXPECT(1 == v.size());
 //            EXPECT(1 == v.capacity()); // not mandatory
@@ -4375,7 +4375,7 @@ const lest::test specification[] =
 
             EXPECT('A' == *std::next(v.begin(), 0));
             EXPECT('B' == *std::next(v.begin(), 1));
-            EXPECT(&(v[1]) == &i2);
+            EXPECT((&(v[1]) == &i2));
             EXPECT(2 == std::distance(v.begin(), v.end()));
             EXPECT(2 == v.size());
 //            EXPECT(2 == v.capacity()); // not mandatory
@@ -4385,7 +4385,7 @@ const lest::test specification[] =
             EXPECT('A' == *std::next(v.begin(), 0));
             EXPECT('B' == *std::next(v.begin(), 1));
             EXPECT('C' == *std::next(v.begin(), 2));
-            EXPECT(&(v[2]) == &i3);
+            EXPECT((&(v[2]) == &i3));
             EXPECT(3 == std::distance(v.begin(), v.end()));
             EXPECT(3 == v.size());
 //            EXPECT(4 == v.capacity()); // not mandatory
@@ -4395,7 +4395,7 @@ const lest::test specification[] =
             auto& i1 = v.emplace_back(1);
 
             EXPECT(1 == *std::next(v.begin(), 0));
-            EXPECT(&(v[0]) == &i1);
+            EXPECT((&(v[0]) == &i1));
             EXPECT(1 == std::distance(v.begin(), v.end()));
             EXPECT(1 == v.size());
 //            EXPECT(1 == v.capacity()); // not mandatory
@@ -4404,7 +4404,7 @@ const lest::test specification[] =
 
             EXPECT(1 == *std::next(v.begin(), 0));
             EXPECT(2 == *std::next(v.begin(), 1));
-            EXPECT(&(v[1]) == &i2);
+            EXPECT((&(v[1]) == &i2));
             EXPECT(2 == std::distance(v.begin(), v.end()));
             EXPECT(2 == v.size());
 //            EXPECT(2 == v.capacity()); // not mandatory
@@ -4414,7 +4414,7 @@ const lest::test specification[] =
             EXPECT(1 == *std::next(v.begin(), 0));
             EXPECT(2 == *std::next(v.begin(), 1));
             EXPECT(3 == *std::next(v.begin(), 2));
-            EXPECT(&(v[2]) == &i3);
+            EXPECT((&(v[2]) == &i3));
             EXPECT(3 == std::distance(v.begin(), v.end()));
             EXPECT(3 == v.size());
 //            EXPECT(4 == v.capacity()); // not mandatory
@@ -4424,7 +4424,7 @@ const lest::test specification[] =
             auto& i1 = v.emplace_back(0.5);
 
             EXPECT(0.5 == *std::next(v.begin(), 0));
-            EXPECT(&(v[0]) == &i1);
+            EXPECT((&(v[0]) == &i1));
             EXPECT(1 == std::distance(v.begin(), v.end()));
             EXPECT(1 == v.size());
 //            EXPECT(1 == v.capacity()); // not mandatory
@@ -4433,7 +4433,7 @@ const lest::test specification[] =
 
             EXPECT(0.5 == *std::next(v.begin(), 0));
             EXPECT(1.0 == *std::next(v.begin(), 1));
-            EXPECT(&(v[1]) == &i2);
+            EXPECT((&(v[1]) == &i2));
             EXPECT(2 == std::distance(v.begin(), v.end()));
             EXPECT(2 == v.size());
 //            EXPECT(2 == v.capacity()); // not mandatory
@@ -4443,7 +4443,7 @@ const lest::test specification[] =
             EXPECT(0.5 == *std::next(v.begin(), 0));
             EXPECT(1.0 == *std::next(v.begin(), 1));
             EXPECT(1.5 == *std::next(v.begin(), 2));
-            EXPECT(&(v[2]) == &i3);
+            EXPECT((&(v[2]) == &i3));
             EXPECT(3 == std::distance(v.begin(), v.end()));
             EXPECT(3 == v.size());
 //            EXPECT(4 == v.capacity()); // not mandatory
@@ -4457,7 +4457,7 @@ const lest::test specification[] =
             EXPECT(int_pair(1, 10) == *std::next(v.begin(), 0));
             EXPECT(int_pair(2, 20) == *std::next(v.begin(), 1));
             EXPECT(int_pair(3, 30) == *std::next(v.begin(), 2));
-            EXPECT(&(v[2]) == &i);
+            EXPECT((&(v[2]) == &i));
             EXPECT(3 == std::distance(v.begin(), v.end()));
             EXPECT(3 == v.size());
 //            EXPECT(4 == v.capacity()); // not mandatory
@@ -4466,7 +4466,7 @@ const lest::test specification[] =
             myvector<unmovable> v(1);
             auto& i = v.emplace_back();
 
-            EXPECT(&(v[1]) == &i);
+            EXPECT((&(v[1]) == &i));
             EXPECT(2 == std::distance(v.begin(), v.end()));
             EXPECT(2 == v.size());
 //            EXPECT(2 == v.capacity()); // not mandatory
@@ -4479,7 +4479,7 @@ const lest::test specification[] =
             EXPECT(5 == v.back().front());
             EXPECT(5 == v.back().back());
             EXPECT(2 == v.back().size());
-            EXPECT(&(v[1]) == &i);
+            EXPECT((&(v[1]) == &i));
             EXPECT(2 == std::distance(v.begin(), v.end()));
             EXPECT(2 == v.size());
 //            EXPECT(2 == v.capacity()); // not mandatory

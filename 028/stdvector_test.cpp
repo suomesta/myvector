@@ -2719,12 +2719,12 @@ const lest::test specification[] =
         {
             myvector<char> v{'A', 'B', 'C'};
 
-            EXPECT(&(*v.begin()) == v.data());
+            EXPECT((&(*v.begin()) == v.data()));
         }
         {
             myvector<char> v;
 
-            EXPECT(&(*v.begin()) == v.data());
+            EXPECT((&(*v.begin()) == v.data()));
         }
         {
             myvector<char> v{'A', 'B', 'C'};
@@ -2741,12 +2741,12 @@ const lest::test specification[] =
         {
             myvector<int> v{1, 2, 3};
 
-            EXPECT(&(*v.begin()) == v.data());
+            EXPECT((&(*v.begin()) == v.data()));
         }
         {
             myvector<int> v;
 
-            EXPECT(&(*v.begin()) == v.data());
+            EXPECT((&(*v.begin()) == v.data()));
         }
         {
             myvector<int> v{1, 2, 3};
@@ -2763,12 +2763,12 @@ const lest::test specification[] =
         {
             myvector<double> v{0.5, 1.0, 1.5};
 
-            EXPECT(&(*v.begin()) == v.data());
+            EXPECT((&(*v.begin()) == v.data()));
         }
         {
             myvector<double> v;
 
-            EXPECT(&(*v.begin()) == v.data());
+            EXPECT((&(*v.begin()) == v.data()));
         }
         {
             myvector<double> v{0.5, 1.0, 1.5};
